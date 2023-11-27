@@ -3,17 +3,18 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
-const server = express();
+const app = express();
 require("dotenv").config();
+const userRouter  = require("./routers/userRouter");
 
 //Middlewares
-// app.use(isLoggeapp.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-server.use(bodyParser.json({ limit: "50mb" }));
-server.use(cookieParser());
-server.use(morgan("dev"));
-server.use(cors());
 
-server.use((req, res, next) => {
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cookieParser());
+app.use(morgan("dev"));
+app.use(cors());
+
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
@@ -24,9 +25,7 @@ server.use((req, res, next) => {
   next();
 });
 
-//rutas
-server.get("/", (req, res) => {
-  res.send("Bienvenido");
-});
+//API Routes
+app.use("/api/user", userRouter);
 
-module.exports = server;
+module.exports = app;

@@ -1,9 +1,11 @@
-const server = require("./src/server");
+const app = require("./src/server");
 require("dotenv").config();
 const { PORT } = process.env;
+const { dbConnect } = require("../SERVER/src/config/db");
 
-// conn.sync({ force: true }).then(() => {
-server.listen(PORT, () => {
+
+app.listen(PORT, () => {
   console.log(`Listen at port ${PORT}`);
+  dbConnect();
 });
-// });
+
