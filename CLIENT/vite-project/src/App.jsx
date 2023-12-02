@@ -1,8 +1,9 @@
 //import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Cart, Detail, Home, Login, Register } from './views'
+import { Cart, Contacto, Detail, Home, Login, Nosotros, Register } from './views'
 import NavBar from './components/NavBar/NavBar'
+
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -10,12 +11,14 @@ function App() {
   return (
     <>
       <NavBar />
-      <div className='w-full h-full flex flex-col items-start'>
+      <div className='w-full h-full flex flex-col items-start py-10'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
 

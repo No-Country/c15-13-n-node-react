@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu"
 const navLinks = [
     { title: "Inicio", path: "/" },
     { title: "Contacto", path: "/contacto" },
-    { title: "Nosotros", path: "/Nosotros" },
+    { title: "Nosotros", path: "/nosotros" },
     { title: "Registrarse", path: "/register" },
     { title: "Carrito", path: "/cart" },
 ]

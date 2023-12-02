@@ -1,19 +1,61 @@
+import { useState } from "react";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export const Carrousel = () => {
+
+    const [slideIndex, setSlideIndex] = useState(0);
+
+    const images = [
+        "/image/robotcesped.png",
+        "/image/sopladorbateria.png",
+        "/image/minitractores.png",
+    ];
+
+    const nextSlide = () => {
+        setSlideIndex((prevIndex) => (prevIndex + 1) % images.length);
+    };
+
+    const prevSlide = () => {
+        setSlideIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    };
+
+    const selectSlide = (index) => {
+        setSlideIndex(index);
+    };
+
+
+
     return (
-        <div className="Frame560 w-96 h-80 relative bg-black">
-            <img className="HeroEndframeCvklg0xk3w6eLarge2 w-96 h-80 left-[396px] top-[16px] absolute" src="https://via.placeholder.com/488x315" />
-            <div className="QuMaquinaNecesitaTuJardN w-72 left-[43px] top-[29px] absolute text-neutral-50 text-5xl font-semibold font-['Inter'] leading-10 tracking-widest">Qué maquina necesita tu jardín?</div>
-            <div className="Frame883 left-[353px] top-[319px] absolute justify-start items-center gap-3 inline-flex">
-                <div className="Ellipse7 w-3 h-3 opacity-50 bg-white rounded-full" />
-                <div className="Ellipse2 w-3 h-3 opacity-50 bg-white rounded-full" />
-                <div className="Group1000005940 w-3.5 h-3.5 relative">
-                    <div className="Ellipse4 w-2.5 h-2.5 left-[2px] top-[2px] absolute bg-red-500 rounded-full" />
-                    <div className="Ellipse5 w-3.5 h-3.5 left-0 top-0 absolute rounded-full border-2 border-white" />
-                </div>
-                <div className="Ellipse3 w-3 h-3 opacity-50 bg-white rounded-full" />
-                <div className="Ellipse6 w-3 h-3 opacity-50 bg-white rounded-full" />
+        <div className=" w-4/5 h-80 relative bg-black self-center flex">
+            <img className="HeroEndframeCvklg0xk3w6eLarge2 w-96 h-80 left-[396px] top-[16px] absolute" src={images[slideIndex]} />
+            <div className="w-72 left-[43px] top-[16px] absolute text-neutral-50 text-5xl font-semibold font-['Inter'] leading-10 tracking-widest">Qué maquina necesita tu jardín?</div>
+
+            <button
+                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-transparent text-white px-4 py-2 rounded"
+                onClick={prevSlide}
+            >
+                <ChevronLeftIcon />
+            </button>
+
+            <button
+                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-transparent text-white px-4 py-2 rounded"
+                onClick={nextSlide}
+            >
+                <ChevronRightIcon />
+            </button>
+            <div className=" left-1/2 top-[320px] absolute justify-center items-center gap-3 inline-flex">
+                {images.map(
+                    (image, index) => (
+                        <div
+                            key={index}
+                            onClick={() => selectSlide(index)}
+                            className={slideIndex === index ? "w-3 h-3 bg-red-500 rounded-full " : "w-3 h-3 opacity-50 bg-black rounded-full"}
+                        />
+                    ))
+                }
             </div>
         </div>
     );
 };
+
