@@ -1,4 +1,7 @@
 @import "./normalize.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -29,7 +32,7 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  min-width: 100vw;
+  min-width: 99vw;
   min-height: 100vh;
 }
 

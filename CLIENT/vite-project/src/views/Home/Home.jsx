@@ -1,7 +1,15 @@
+import { Carrousel } from "../../components/home/Carrousel/Carrousel";
+import Categorias from "../../components/home/Categorias/Categorias";
+import Ofertas from "../../components/home/ofertas/Ofertas";
+
 export default function Home() {
     return (
-        <div>
-            <h1>Aca van los productos</h1>
-        </div>
+        <>
+            <Carrousel />
+            <br />
+            <Ofertas />
+            <br />
+            <Categorias />
+        </>
     );
 }
