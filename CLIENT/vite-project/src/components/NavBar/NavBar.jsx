@@ -31,7 +31,10 @@ export default function NavBar() {
                         <MenuIcon />
 
                     </IconButton>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>Titulo</Typography>
+                    <Box variant="h6" sx={{ flexGrow: 1 }}>
+                        <img src="/image/logo.jpg" className="h-20" />
+                        <Typography>JARDIN VERDE</Typography>
+                    </Box>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {
                             navLinks.map(item => { return (<Button key={item.title} component={NavLink} to={item.path}> {item.title} </Button>) }

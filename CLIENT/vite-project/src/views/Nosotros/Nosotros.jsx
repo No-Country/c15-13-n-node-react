@@ -6,12 +6,12 @@ export default function Nosotros() {
             <div className="flex-col w-full justify-start items-start gap-10 inline-flex">
                 <h1 className="p-10 text-justify text-black text-5xl font-semibold font-['Inter'] leading-10 tracking-widest">Our Story</h1>
                 <div className="flex flex-wrap justify-start items-start gap-6 w-full">
-                    <div className="sm:w-full lg:w-1/2 p-10 text-black text-base font-normal font-['Poppins'] leading-relaxed">En 1948, se fundó la empresa "AgroMáquinas" con el objetivo de satisfacer las necesidades de los agricultores en el campo de la maquinaria agrícola. Desde sus inicios, la empresa se ha dedicado al diseño, fabricación y venta de maquinarias innovadoras para facilitar y optimizar las labores agrícolas.
+                    <div className="sm:w-full lg:w-1/2 p-10 text-black text-base font-normal font-['Poppins'] leading-relaxed">En 1948, se fundó la empresa JARDIN VERDE con el objetivo de satisfacer las necesidades de los agricultores en el campo de la maquinaria agrícola. Desde sus inicios, la empresa se ha dedicado al diseño, fabricación y venta de maquinarias innovadoras para facilitar y optimizar las labores agrícolas.
 
                         AgroMáquinas comenzó como un pequeño taller en un pueblo rural, donde se fabricaban a mano herramientas y equipos agrícolas básicos. Con el tiempo, la empresa fue creciendo y expandiendo su gama de productos, incorporando tecnología avanzada y modernizando sus procesos de fabricación.
                         Llegando asi a todos los jardines de los diferentes hogares.
                     </div>
-                    <div className=" flex justify-center items-center w-auto h-96 rounded-tl rounded-bl justify-end items-center inline-flex">
+                    <div className=" flex justify-center items-center w-auto h-96 rounded-tl rounded-bl">
                         <img className="sm:w-full lg:w-auto p-10 h-96" src="/image/planta.jpg" />
                     </div>
                 </div>
