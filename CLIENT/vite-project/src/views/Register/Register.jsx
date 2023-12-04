@@ -1,65 +1,141 @@
+import { useState } from "react";
+import validate from "./validate";
+import FormInput from "../../components/Register/FormInput";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 export default function Register() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
+
+    const [errors, setErrors] = useState({});
+    const formInputs = [
+        {
+            name: 'Nombre',
+            type: 'text',
+            autoComplete: 'name',
+            value: name,
+            onChange: (e) => {
+                setName(e.target.value);
+                setErrors(validate({ ...errors, name: e.target.value }));
+            },
+            errorName: 'name',
+        },
+        {
+            name: 'Email',
+            type: 'email',
+            autoComplete: 'email',
+            value: email,
+            onChange: (e) => {
+                setEmail(e.target.value);
+                setErrors(validate({ ...errors, email: e.target.value }));
+            },
+            errorName: 'email',
+        },
+        {
+            name: 'Contraseña',
+            type: 'password',
+            autoComplete: 'password',
+            value: password,
+            onChange: (e) => {
+                setPassword(e.target.value);
+                setErrors(validate({ ...errors, password: e.target.value }));
+            },
+            errorName: 'password',
+        },
+        {
+            name: 'Confirmar Contraseña',
+            type: 'password',
+            autoComplete: 'password',
+            value: confirmPassword,
+            onChange: (e) => {
+                setConfirmPassword(e.target.value);
+                setErrors(validate({ ...errors, confirmPassword: e.target.value }));
+            },
+            errorName: 'confirmPassword'
+
+        },
+    ];
+
+    const handlerSubmit = (e) => {
+        e.preventDefault();
+        setErrors({});
+        if (Object.keys(validate({ name, email, password, confirmPassword })).length !== 0) {
+            setErrors(validate({ name, email, password, confirmPassword }));
+            return;
+        }
+        axios.post('https://localhost:8000/register', {
+            name,
+            email,
+            password,
+            confirmPassword
+        }).then(res => {
+            if (res.data.status === 200) {
+                //localStorage.setItem('token', res.data.token);
+                //localStorage.setItem('user', JSON.stringify(res.data.user));
+                navigate('/');
+            }
+        })
+            .catch(
+                (error) => {
+                    alert(`Error al crear la cuenta${error.response.data.message}`)
+                }
+            )
+
+    }
+
+
     return (
-        <>
-            <div className="Line3 w-96 h-px left-0 top-[140px] absolute justify-center items-center inline-flex">
-                <div className="Line3 w-96 h-px origin-top-left rotate-180 opacity-30 border border-black"></div>
-            </div>
-            <div className="Frame760 left-0 top-[200px] absolute justify-start items-center gap-32 inline-flex">
+        <div className="w-full h-full">
+
+            <div className="flex justify-center items-center gap-32 ">
                 <div className="SideImage pl-4 pr-5 pt-20 pb-16 bg-sky-50 rounded-tr rounded-br justify-center items-center flex">
-                    <img className="DlBeatsnoop1 w-96 h-96" src="https://via.placeholder.com/770x640" />
+                    <img className="DlBeatsnoop1 w-96 h-96" src="/image/varias_herramientas.png" />
                 </div>
-                <div className="Frame759 flex-col justify-start items-start gap-12 inline-flex">
-                    <div className="Frame753 flex-col justify-start items-start gap-6 flex">
-                        <div className="CreateAnAccount text-black text-4xl font-medium font-['Inter'] leading-loose tracking-wider">Create an account</div>
-                        <div className="EnterYourDetailsBelow text-black text-base font-normal font-['Poppins'] leading-normal">Enter your details below</div>
+                <section className="flex-col justify-start items-start gap-6 inline-flex">
+                    <div className="flex-col justify-start items-start gap-6 flex">
+                        <div className="CreateAnAccount text-black text-4xl font-medium font-['Inter'] leading-loose tracking-wider">Registrarse</div>
+
                     </div>
-                    <div className="Frame758 flex-col justify-start items-center gap-10 flex">
-                        <div className="Frame757 flex-col justify-start items-start gap-10 flex">
-                            <div className="Frame754 flex-col justify-start items-start gap-2 flex">
-                                <div className="Name opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal">Name</div>
-                                <div className="Underline w-96 h-px opacity-50 justify-center items-center inline-flex">
-                                    <div className="Line1 w-96 h-px border border-black"></div>
+                    <form className="flex-col justify-start items-center gap-5 flex">
+                        {
+                            formInputs.map((input) => (
+                                <div key={input.name} className="form-group relative mb-10 w-full justify-self-end">
+                                    <FormInput
+                                        type={input.type}
+                                        name={input.name}
+                                        value={input.value}
+                                        handler={input.onChange}
+                                        autoComplete={input.autoComplete}
+                                        errors={errors[input.errorName]}
+                                    />
+
                                 </div>
-                            </div>
-                            <div className="Frame755 flex-col justify-start items-start gap-2 flex">
-                                <div className="EmailOrPhoneNumber opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal">Email or Phone Number</div>
-                                <div className="Underline w-96 h-px opacity-50 justify-center items-center inline-flex">
-                                    <div className="Line1 w-96 h-px border border-black"></div>
-                                </div>
-                            </div>
-                            <div className="Frame756 flex-col justify-start items-start gap-2 flex">
-                                <div className="Password opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal">Password</div>
-                                <div className="Underline w-96 h-px opacity-50 justify-center items-center inline-flex">
-                                    <div className="Line1 w-96 h-px border border-black"></div>
+                            ))
+                        }
+
+                        <button onClick={handlerSubmit} className="Button px-32 py-4 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
+                            <p className="text-white bg-transparent text-base font-medium font-['Poppins'] leading-normal">CREAR CUENTA</p>
+                        </button>
+                        <div className="flex-col justify-start items-center gap-8 flex">
+
+                            <div className="justify-start items-center gap-4 inline-flex">
+                                <div className="AlreadyHaveAccount opacity-70 text-black text-base font-normal font-['Poppins'] leading-normal">¿Ya tiene una cuenta?</div>
+                                <div className="flex-col justify-start items-start gap-1 inline-flex">
+                                    <NavLink to={"/login"} className="LogIn opacity-70 text-black text-base font-medium font-['Poppins'] leading-normal">Iniciar sesion</NavLink>
                                 </div>
                             </div>
                         </div>
-                        <div className="Frame752 flex-col justify-start items-start gap-4 flex">
-                            <div className="Button px-32 py-4 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
-                                <div className="VerTodosLosProductos text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">Create Account</div>
-                            </div>
-                            <div className="Frame751 flex-col justify-start items-center gap-8 flex">
-                                <div className="GoogleSignUp px-20 py-4 rounded border border-black border-opacity-40 flex-col justify-start items-start gap-2.5 flex">
-                                    <div className="Frame748 justify-start items-start gap-4 inline-flex">
-                                        <div className="IconGoogle w-6 h-6 relative" />
-                                        <div className="SignUpWithGoogle text-black text-base font-normal font-['Poppins'] leading-normal">Sign up with Google</div>
-                                    </div>
-                                </div>
-                                <div className="Frame750 justify-start items-center gap-4 inline-flex">
-                                    <div className="AlreadyHaveAccount opacity-70 text-black text-base font-normal font-['Poppins'] leading-normal">Already have account?</div>
-                                    <div className="Frame749 flex-col justify-start items-start gap-1 inline-flex">
-                                        <div className="LogIn opacity-70 text-black text-base font-medium font-['Poppins'] leading-normal">Log in</div>
-                                        <div className="Underline w-12 h-px relative opacity-50">
-                                            <div className="Line1 w-12 h-px left-0 top-0 absolute border border-black"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                    </form>
+                </section>
             </div>
 
-        </>
+        </div>
     );
 }
