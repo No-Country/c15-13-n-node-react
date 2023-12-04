@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const asyncHandler = require("express-async-handler");
+const User = require("../models/User");
 require("dotenv").config();
 
 //Verificamos si el token existe o es valido
@@ -24,8 +26,9 @@ const verifyToken = async (req, res, next) => {
       //Verificamos si el usuario existe y el token es valido
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const user = await User.findById(decoded.id, { password: 0 });
-      req.userId = decoded.id;
-      if (!user) return res.status(404).json({ message: "Usuario no encontrado..." });
+      req.user = user;
+      if (!user)
+        return res.status(404).json({ message: "Usuario no encontrado..." });
       next();
     }
   } catch (error) {
@@ -33,6 +36,17 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
+const isAdmin = asyncHandler(async (req, res, next) => {
+  const { email } = req.user;
+  const adminUser = await User.findOne({ email });
+  if (adminUser.role !== "admin") {
+    throw new Error("No eres un administador...");
+  } else {
+    next();
+  }
+});
+
 module.exports = {
   verifyToken,
+  isAdmin,
 };

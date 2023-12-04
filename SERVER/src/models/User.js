@@ -18,6 +18,10 @@ let userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    avatar: {
+      type: String,
+      required: true,
+    },
     mobile: {
       type: String,
       required: true,
@@ -31,10 +35,13 @@ let userSchema = new mongoose.Schema(
       type: String,
       default: "user",
     },
-    status:{
+    status: {
       type: Boolean,
-      default: false,
-    }
+      default: true,
+    },
+  },
+  {
+    timestamps: true,
   },
   {
     toJSON: {
