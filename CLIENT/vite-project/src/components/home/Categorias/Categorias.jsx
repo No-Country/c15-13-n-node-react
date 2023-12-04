@@ -1,6 +1,6 @@
 export default function Categorias() {
     return (
-        <div className="w-96 h-80 flex-col justify-start items-start gap-14 inline-flex  py-40">
+        <div className="w-full h-auto flex-col justify-start items-start gap-14 inline-flex  py-40">
             <div className="Frame729 justify-start items-end gap-96 inline-flex">
                 <div className="Frame624 flex-col justify-start items-start gap-5 inline-flex">
                     <div className="Frame623 justify-start items-center gap-4 inline-flex">
