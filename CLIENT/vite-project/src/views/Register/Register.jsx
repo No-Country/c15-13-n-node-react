@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validate from "./validate";
 import FormInput from "../../components/Register/FormInput";
 import { NavLink } from "react-router-dom";
@@ -22,7 +22,7 @@ export default function Register() {
             value: name,
             onChange: (e) => {
                 setName(e.target.value);
-                setErrors(validate({ ...errors, name: e.target.value }));
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, name: e.target.value }));
             },
             errorName: 'name',
         },
@@ -33,7 +33,7 @@ export default function Register() {
             value: email,
             onChange: (e) => {
                 setEmail(e.target.value);
-                setErrors(validate({ ...errors, email: e.target.value }));
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
             },
             errorName: 'email',
         },
@@ -44,7 +44,7 @@ export default function Register() {
             value: password,
             onChange: (e) => {
                 setPassword(e.target.value);
-                setErrors(validate({ ...errors, password: e.target.value }));
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, password: e.target.value }));
             },
             errorName: 'password',
         },
@@ -55,7 +55,7 @@ export default function Register() {
             value: confirmPassword,
             onChange: (e) => {
                 setConfirmPassword(e.target.value);
-                setErrors(validate({ ...errors, confirmPassword: e.target.value }));
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, confirmPassword: e.target.value }));
             },
             errorName: 'confirmPassword'
 

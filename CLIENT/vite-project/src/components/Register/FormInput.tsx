@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   type: string;
@@ -20,6 +20,11 @@ export default function FormInput({
 }: Props): React.ReactNode {
   const [inputValue, setInputValue] = useState(value);
   const [error, setError] = useState(errors);
+
+  useEffect(() => {
+    setInputValue(value);
+    setError(errors);
+  }, [value, errors]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handler(event);
@@ -48,7 +53,7 @@ export default function FormInput({
       >
         {name}
       </label>
-      {error && <p className="absolute text-red-500 py-6">{error}</p>}
+      {error && <p className="absolute text-red-500 top-16">{error}</p>}
     </>
   );
 }
