@@ -19,7 +19,7 @@ export default function Categorias() {
                     <div className="BrowseByCategory text-black text-4xl font-semibold font-['Inter'] leading-10 tracking-wider">Buscar por Categoria</div>
                 </div>
             </div>
-            <div className="Frame597 justify-start items-start gap-7 inline-flex">
+            <div className="justify-start items-start gap-7 inline-flex">
                 {listaCategorias.map((cat) => (
                     <div className="CategoryPhone w-44 h-36 px-11 pt-6 rounded border border-black border-opacity-30 flex-col justify-end items-center gap-4 inline-flex" key={cat.categoria}>
                         <img src={cat.imagen} alt="" />
