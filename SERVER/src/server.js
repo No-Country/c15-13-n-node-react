@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const userRouter  = require("./routers/userRouter");
+const productRouter = require("./routers/productRouter");
 
 //Middlewares
 
@@ -27,5 +28,6 @@ app.use((req, res, next) => {
 
 //API Routes
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter);
 
 module.exports = app;
