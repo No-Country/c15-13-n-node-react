@@ -4,7 +4,7 @@ export default function Ofertas() {
     return (
         <div className="w-full h-auto flex-col justify-start items-start py-10 gap-10 inline-flex">
             <div className="justify-start items-end gap-96 inline-flex">
-                <div className="Frame725 justify-start items-end gap-20 flex">
+                <div className="px-5 justify-start items-end gap-20 flex">
                     <div className="h-24 flex-col justify-start items-start gap-6 inline-flex">
                         <div className="justify-start items-center gap-4 inline-flex">
                             <div className="Rectangle18 w-5 h-10 relative">
