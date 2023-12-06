@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   registerCtrl,
   loginCtrl,
+  logoutCtrl,
   getUserCtrl,
   getUserCtrlId,
   updateUserCtrl,
@@ -14,6 +15,7 @@ const { verifyToken, isAdmin } = require("../middleware/authJwt");
 // Auth
 router.post("/register", registerCtrl);
 router.post("/login", loginCtrl);
+router.post("/logout", verifyToken, logoutCtrl);
 
 // User CRUD
 

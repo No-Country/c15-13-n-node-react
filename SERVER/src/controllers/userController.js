@@ -1,6 +1,7 @@
 const {
   registerService,
   loginService,
+  logoutService,
   getUsersService,
   getAllUserByIdService,
   modifyUsersService,
@@ -20,6 +21,15 @@ const registerCtrl = asyncHandler(async (req, res) => {
 const loginCtrl = asyncHandler(async (req, res) => {
   try {
     res.status(200).send(await loginService(req.body));
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error });
+  }
+});
+
+const logoutCtrl = asyncHandler(async (req, res) => {
+  try {
+    res.status(200).send(await logoutService(req.user));
   } catch (error) {
     console.log(error);
     res.status(400).send({ error });
@@ -65,6 +75,7 @@ const deleteUserCtrl= asyncHandler(async (req, res) => {
 module.exports = {
   registerCtrl,
   loginCtrl,
+  logoutCtrl,
   getUserCtrl,
   getUserCtrlId,
   updateUserCtrl,

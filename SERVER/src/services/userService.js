@@ -52,6 +52,15 @@ const loginService = async (data) => {
   }
 };
 
+const logoutService = async(data) =>{
+  data.token = "";
+  await data.save();
+  return {
+    msg:"Se ha cerrado sesión...",
+    success: true,
+  }
+}
+
 const getUsersService = async () => {
   const users = await User.find();
   return users;
@@ -127,6 +136,7 @@ const deleteUsersService = async (id) => {
 module.exports = {
   registerService,
   loginService,
+  logoutService,
   getUsersService,
   getAllUserByIdService,
   modifyUsersService,

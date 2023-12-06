@@ -7,6 +7,8 @@ const app = express();
 require("dotenv").config();
 const userRouter  = require("./routers/userRouter");
 const productRouter = require("./routers/productRouter");
+const cartRouter = require("./routers/cartRouter");
+const orderRouter = require("./routers/orderRouter");
 
 //Middlewares
 
@@ -29,5 +31,7 @@ app.use((req, res, next) => {
 //API Routes
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
 module.exports = app;

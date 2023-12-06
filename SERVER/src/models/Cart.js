@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const orderSchema = new mongoose.Schema(
+const cartSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -39,4 +39,4 @@ const orderSchema = new mongoose.Schema(
 );
 
 //Export the model
-module.exports = mongoose.model("Order", orderSchema);
+module.exports = mongoose.model("Cart", cartSchema);
