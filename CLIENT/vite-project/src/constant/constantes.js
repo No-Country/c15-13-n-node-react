@@ -1,9 +1,12 @@
 export const getListProduct = [{
     id: 1,
     name: 'Tijera de podar',
+    reference: 'T-podar',
     image: '/image/tijerapodar.png',
     price: 100,
     description: 'Tijera de podar de 100 cm de alto',
+    categoria: "Herramientas de Jardín",
+
 },
 {
     id: 2,
@@ -11,6 +14,7 @@ export const getListProduct = [{
     image: '/image/sopladorbateria.png',
     price: 10000,
     description: 'Soplador a bateria de alto poder de soplado, ideal para grandes espacios',
+    category: "Máquinas a Baterías",
 },
 {
     id: 3,
@@ -18,13 +22,15 @@ export const getListProduct = [{
     image: '/image/podadoraltura.png',
     price: 10000,
     description: 'Podadora electrica',
+    category: "Máquinas a Explosión",
 },
 {
     id: 4,
     name: 'Robot cortador',
     image: '/image/robotcesped.png',
     price: 15000,
-    description: 'Robot cortador a bateria, gracias a nuestra tecnologia solo tendra que procuparce por cargar la bateria de su podadora'
+    description: 'Robot cortador a bateria, gracias a nuestra tecnologia solo tendra que procuparce por cargar la bateria de su podadora',
+    category: "Máquinas a Baterías",
 },]
 
 export const getListCategorias = [
