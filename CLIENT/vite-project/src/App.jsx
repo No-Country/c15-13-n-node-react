@@ -1,7 +1,7 @@
 //import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Cart, Contacto, Detail, Home, Login, Nosotros, Register } from './views'
+import { Cart, Contacto, Detail, Home, Login, Nosotros, Product, Register } from './views'
 import NavBar from './components/NavBar/NavBar'
 
 
@@ -19,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/productos" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
 
