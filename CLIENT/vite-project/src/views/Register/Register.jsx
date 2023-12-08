@@ -4,27 +4,42 @@ import FormInput from "../../components/Register/FormInput";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import RegisterImage from "../../components/RegisterImage/RegisterImage";
 
 
 export default function Register() {
-    const [name, setName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [mobile, setMobile] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const navigate = useNavigate();
+    const [avatar, setAvatar] = useState(null);
+    //const navigate = useNavigate();
 
     const [errors, setErrors] = useState({});
     const formInputs = [
         {
             name: 'Nombre',
             type: 'text',
-            autoComplete: 'name',
-            value: name,
+            autoComplete: 'firstName',
+            value: firstName,
             onChange: (e) => {
-                setName(e.target.value);
+                setFirstName(e.target.value);
                 setErrors(validate({ ...{ name, email, password, confirmPassword }, name: e.target.value }));
             },
-            errorName: 'name',
+            errorName: 'Nombre',
+        },
+        {
+            name: 'Apellido',
+            type: 'text',
+            autoComplete: 'lastName',
+            value: lastName,
+            onChange: (e) => {
+                setLastName(e.target.value);
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, name: e.target.value }));
+            },
+            errorName: 'Apellido',
         },
         {
             name: 'Email',
@@ -36,6 +51,17 @@ export default function Register() {
                 setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
             },
             errorName: 'email',
+        },
+        {
+            name: 'mobile',
+            type: 'text',
+            autoComplete: 'mobile',
+            value: mobile,
+            onChange: (e) => {
+                setMobile(e.target.value);
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, name: e.target.value }));
+            },
+            errorName: 'movile',
         },
         {
             name: 'Contraseña',
@@ -64,22 +90,25 @@ export default function Register() {
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-        setErrors({});
+        /* setErrors({});
         if (Object.keys(validate({ name, email, password, confirmPassword })).length !== 0) {
             setErrors(validate({ name, email, password, confirmPassword }));
             return;
-        }
-        axios.post('https://localhost:8000/register', {
-            name,
+        } */
+
+        axios.post('http://localhost:8000/api/user/register', {
+            lastName,
+            firstName,
             email,
+            mobile,
             password,
-            confirmPassword
+
         }).then(res => {
-            if (res.data.status === 200) {
-                //localStorage.setItem('token', res.data.token);
-                //localStorage.setItem('user', JSON.stringify(res.data.user));
-                navigate('/');
-            }
+            //localStorage.setItem('token', res.data.token);
+            //localStorage.setItem('user', JSON.stringify(res.data.user));
+            //navigate('/');
+            alert(`usuario creado con exito`);
+            console.log(res.data);
         })
             .catch(
                 (error) => {
@@ -95,7 +124,7 @@ export default function Register() {
 
             <div className="flex justify-center items-center gap-32 ">
                 <div className="SideImage pl-4 pr-5 pt-20 pb-16 bg-sky-50 rounded-tr rounded-br justify-center items-center flex">
-                    <img className="DlBeatsnoop1 w-96 h-96" src="/image/varias_herramientas.png" />
+                    <RegisterImage avatar={avatar} handler={setAvatar} />
                 </div>
                 <section className="flex-col justify-start items-start gap-6 inline-flex">
                     <div className="flex-col justify-start items-start gap-6 flex">

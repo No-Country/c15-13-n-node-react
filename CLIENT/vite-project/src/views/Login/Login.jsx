@@ -1,45 +1,111 @@
-export default function Login() {
-    return (
-        <>
+import { useState } from "react";
 
-            <div className="Line3 w-96 h-px left-0 top-[140px] absolute justify-center items-center inline-flex">
-                <div className="Line3 w-96 h-px origin-top-left rotate-180 opacity-30 border border-black"></div>
-            </div>
-            <div className="Frame767 left-0 top-[200px] absolute justify-start items-center gap-32 inline-flex">
-                <div className="SideImage h-96 px-9 pt-16 pb-28 bg-slate-50 rounded-tr rounded-br justify-center items-center flex">
-                    <img className="DlBeatsnoop1 w-96 h-96" src="https://via.placeholder.com/729x599" />
-                </div>
-                <div className="Frame766 flex-col justify-start items-start gap-10 inline-flex">
-                    <div className="Frame764 flex-col justify-start items-start gap-12 flex">
-                        <div className="Frame753 flex-col justify-start items-start gap-6 flex">
-                            <div className="LogInToExclusive text-black text-4xl font-medium font-['Inter'] leading-loose tracking-wider">Log in to Exclusive</div>
-                            <div className="EnterYourDetailsBelow text-black text-base font-normal font-['Poppins'] leading-normal">Enter your details below</div>
-                        </div>
-                        <div className="Frame757 flex-col justify-start items-start gap-10 flex">
-                            <div className="Frame755 flex-col justify-start items-start gap-2 flex">
-                                <div className="EmailOrPhoneNumber opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal">Email or Phone Number</div>
-                                <div className="Underline w-96 h-px opacity-50 justify-center items-center inline-flex">
-                                    <div className="Line1 w-96 h-px border border-black"></div>
-                                </div>
-                            </div>
-                            <div className="Frame756 flex-col justify-start items-start gap-2 flex">
-                                <div className="Password opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal">Password</div>
-                                <div className="Underline w-96 h-px opacity-50 justify-center items-center inline-flex">
-                                    <div className="Line1 w-96 h-px border border-black"></div>
-                                </div>
-                            </div>
-                        </div>
+import FormInput from "../../components/Register/FormInput";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import RegisterImage from "../../components/RegisterImage/RegisterImage";
+
+
+export default function Register() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    //const navigate = useNavigate();
+
+    const [errors, setErrors] = useState({});
+    const formInputs = [
+
+        {
+            name: 'Email',
+            type: 'email',
+            autoComplete: 'email',
+            value: email,
+            onChange: (e) => {
+                setEmail(e.target.value);
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
+            },
+            errorName: 'email',
+        },
+
+        {
+            name: 'Contraseña',
+            type: 'password',
+            autoComplete: 'password',
+            value: password,
+            onChange: (e) => {
+                setPassword(e.target.value);
+                setErrors(validate({ ...{ name, email, password, confirmPassword }, password: e.target.value }));
+            },
+            errorName: 'password',
+        },
+
+    ];
+
+    const handlerSubmit = (e) => {
+        e.preventDefault();
+        /* setErrors({});
+        if (Object.keys(validate({ name, email, password, confirmPassword })).length !== 0) {
+            setErrors(validate({ name, email, password, confirmPassword }));
+            return;
+        } */
+
+        axios.post('http://localhost:8000/api/user/register', {
+
+            email,
+
+            password,
+
+        }).then(res => {
+            //localStorage.setItem('token', res.data.token);
+            //localStorage.setItem('user', JSON.stringify(res.data.user));
+            //navigate('/');
+
+            console.log(res.data);
+        })
+            .catch(
+                (error) => {
+                    alert(`Error al crear la cuenta${error.response.data.message}`)
+                }
+            )
+
+    }
+
+
+    return (
+        <div className="w-full h-full">
+
+            <div className="flex justify-center items-center gap-32 ">
+                <section className="flex-col justify-start items-start gap-6 inline-flex">
+                    <div className="flex-col justify-start items-start gap-6 flex">
+                        <div className="CreateAnAccount text-black text-4xl font-medium font-['Inter'] leading-loose tracking-wider">Iniciar</div>
+
                     </div>
-                    <div className="Frame765 justify-start items-center gap-20 inline-flex">
-                        <div className="Frame752 flex-col justify-start items-start gap-4 inline-flex">
-                            <div className="Button px-12 py-4 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
-                                <div className="VerTodosLosProductos text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">Log In</div>
-                            </div>
-                        </div>
-                        <div className="ForgetPassword text-red-500 text-base font-normal font-['Poppins'] leading-normal">Forget Password?</div>
-                    </div>
-                </div>
+                    <form className="flex-col justify-start items-center gap-5 flex">
+                        {
+                            formInputs.map((input) => (
+                                <div key={input.name} className="form-group relative mb-10 w-full justify-self-end">
+                                    <FormInput
+                                        type={input.type}
+                                        name={input.name}
+                                        value={input.value}
+                                        handler={input.onChange}
+                                        autoComplete={input.autoComplete}
+                                        errors={errors[input.errorName]}
+                                    />
+
+                                </div>
+                            ))
+                        }
+
+                        <button onClick={handlerSubmit} className="Button px-32 py-4 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
+                            <p className="text-white bg-transparent text-base font-medium font-['Poppins'] leading-normal">CREAR CUENTA</p>
+                        </button>
+
+                    </form>
+                </section>
             </div>
-        </>
+
+        </div>
     );
 }
