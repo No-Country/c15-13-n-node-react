@@ -10,10 +10,11 @@ const {
   deleteProductCtrl,
 } = require("../controllers/productController");
 
+const { verifyToken, isAdmin } = require("../middleware/authJwt");
 // Product CRUD
 
 // Create product
-router.post("/create", createProductCtrl);
+router.post("/create", verifyToken, createProductCtrl);
 
 // Get products
 router.get("/get-products", getProductCtrl);
@@ -22,15 +23,15 @@ router.get("/get-products", getProductCtrl);
 router.get("/get-one-product/:id", getPropductCtrlId);
 
 // Update Product
-router.patch("/update-product/:id", updateProductCtrl);
+router.patch("/update-product/:id", verifyToken, updateProductCtrl);
 
 // Update stock increment product
-router.patch("/update-product/:id/increment-stock/:value", updateStockIncCtrl);
+router.patch("/update-product/:id/increment-stock/:value", verifyToken, updateStockIncCtrl);
 
 // Update stock decrement product
-router.patch("/update-product/:id/decrement-stock/:value", updateStockDecCtrl);
+router.patch("/update-product/:id/decrement-stock/:value", verifyToken, updateStockDecCtrl);
 
 // Delete product
-router.delete("/delete-product/:id", deleteProductCtrl);
+router.delete("/delete-product/:id", verifyToken, deleteProductCtrl);
 
 module.exports = router;

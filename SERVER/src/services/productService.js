@@ -30,12 +30,13 @@ const createProductService = async (data) => {
 };
 
 const getProductsService = async () => {
-  const users = await Product.find();
+  const users = await Product.find({ status: true });
   return { users, status: true };
 };
 
 const getProductByIdService = async (data) => {
-  const user = await Product.findOne({ _id: data });
+  const { id } = data;
+  const user = await Product.findById(id);
   if (!user) {
     return {
       message: "Producto no encontrado...",
@@ -47,7 +48,6 @@ const getProductByIdService = async (data) => {
 
 const modifyProductService = async (id, data) => {
   const { name, reference, description, price, category, image } = data;
-
   if (image) {
     const updatedImage = await uploadImageCloud(image);
     const updatedProduct = await User.findByIdAndUpdate(
@@ -64,7 +64,11 @@ const modifyProductService = async (id, data) => {
         new: true,
       }
     );
-    return updatedProduct;
+    return {
+      updatedProduct,
+      msg: "Actualización satisfacotria...",
+      success: true,
+    };
   } else {
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
@@ -79,7 +83,11 @@ const modifyProductService = async (id, data) => {
         new: true,
       }
     );
-    return updatedProduct;
+    return {
+      updatedProduct,
+      msg: "Actualización satisfacotria...",
+      success: true,
+    };
   }
 };
 
@@ -115,8 +123,9 @@ const updateStockDecService = async (id, value) => {
   return { product, success: true };
 };
 
-const deleteProductService = async (id) => {
-  const delProduct = await Product.findOne({ _id: id });
+const deleteProductService = async (data) => {
+  const { id } = data;
+  const delProduct = await Product.findById(id);
   if (!delProduct) {
     return {
       msg: "Producto no encontrado...",

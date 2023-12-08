@@ -20,7 +20,7 @@ let userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      required: true,
+      required: false,
     },
     mobile: {
       type: String,
