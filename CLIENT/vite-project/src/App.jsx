@@ -1,14 +1,16 @@
-//import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Cart, Contacto, Detail, Home, Login, Nosotros, Product, Register } from './views'
+import { Admin, Cart, Contacto, Detail, Home, Login, Nosotros, Product, Register } from './views'
 import NavBar from './components/NavBar/NavBar'
+import { ProtectedRoute } from './components/Protected/ProtectedRoute'
+import { useState } from 'react'
 
 
 function App() {
-  //const [count, setCount] = useState(0)
+  const [user, setUser] = useState(null);
 
   return (
+
     <>
       <NavBar />
       <div className='w-full h-full flex flex-col items-start py-10'>
@@ -18,14 +20,20 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/contacto" element={<Contacto />} />
           <Route path="/productos" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route element={<ProtectedRoute isAllowed={!!user} />}>
+            <Route path="/cart" element={<Cart />} />
+          </Route>
+          <Route element={<ProtectedRoute isAllowed={!!user && user.role === 'admin'} redirectTo='/login' />}>
+            <Route path='/admin' element={<Admin />} />
+          </Route>
         </Routes>
 
       </div>
-
     </>
+
+
   )
 }
 

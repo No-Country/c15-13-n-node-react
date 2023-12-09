@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import RegisterImage from "../../components/RegisterImage/RegisterImage";
+const BASE_URL = import.meta.env.VITE_URL_BASE;
 
 
 export default function Register() {
@@ -96,7 +97,7 @@ export default function Register() {
             return;
         } */
 
-        axios.post('http://localhost:8000/api/user/register', {
+        axios.post(`${BASE_URL}user/register`, {
             lastName,
             firstName,
             email,

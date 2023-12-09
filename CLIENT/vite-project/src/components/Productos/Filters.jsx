@@ -20,7 +20,7 @@ export function Filters({ onChange }) {
         }))
     }
     return (
-        <section>
+        <section className="flex justify-between w-full py-10">
             <div>
                 <label htmlFor="price">Precio</label>
                 <input type="range" id='price' min='0' max='100000' onChange={handleChangeMinPrice} />

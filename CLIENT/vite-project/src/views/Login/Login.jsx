@@ -1,17 +1,15 @@
 import { useState } from "react";
 
 import FormInput from "../../components/Register/FormInput";
-import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import RegisterImage from "../../components/RegisterImage/RegisterImage";
 
 
 export default function Register() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [errors, setErrors] = useState({});
     const formInputs = [
@@ -23,7 +21,6 @@ export default function Register() {
             value: email,
             onChange: (e) => {
                 setEmail(e.target.value);
-                setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
             },
             errorName: 'email',
         },
@@ -35,7 +32,6 @@ export default function Register() {
             value: password,
             onChange: (e) => {
                 setPassword(e.target.value);
-                setErrors(validate({ ...{ name, email, password, confirmPassword }, password: e.target.value }));
             },
             errorName: 'password',
         },
@@ -50,18 +46,17 @@ export default function Register() {
             return;
         } */
 
-        axios.post('http://localhost:8000/api/user/register', {
-
+        axios.post('http://localhost:8000/api/user/login', {
             email,
-
             password,
 
         }).then(res => {
             //localStorage.setItem('token', res.data.token);
             //localStorage.setItem('user', JSON.stringify(res.data.user));
-            //navigate('/');
-
+            navigate('/');
             console.log(res.data);
+
+
         })
             .catch(
                 (error) => {
@@ -99,7 +94,7 @@ export default function Register() {
                         }
 
                         <button onClick={handlerSubmit} className="Button px-32 py-4 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
-                            <p className="text-white bg-transparent text-base font-medium font-['Poppins'] leading-normal">CREAR CUENTA</p>
+                            <p className="text-white bg-transparent text-base font-medium font-['Poppins'] leading-normal">Iniciar sesion</p>
                         </button>
 
                     </form>

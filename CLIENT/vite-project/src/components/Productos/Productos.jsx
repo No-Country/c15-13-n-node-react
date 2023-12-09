@@ -1,22 +1,15 @@
-import { useEffect } from "react";
 import { getListProduct } from "../../constant/constantes";
 import Card from "../Card/Card";
-import axios from "axios"
+import { useProductStore } from "../../store/productStore"
 
 export default function Productos({ products }) {
 
     const listProduct = products ? products : getListProduct;
+    const listBase = useProductStore((state) => state.products);
 
-    useEffect(
-        () => {
-            axios("http://localhost:8000/api/product/get-products ").then(response => {
-                console.log(response.data);
-            })
-        }, []
-    )
 
     return (
-        <>
+        <div className="flex flex-row flex-wrap">
             {listProduct.map((product) => {
                 return (
                     <div key={product.id}>
@@ -24,6 +17,13 @@ export default function Productos({ products }) {
                     </div>
                 )
             })}
-        </>
+            {listBase.map((product) => {
+                return (
+                    <div key={product.id}>
+                        <Card id={product.id} name={product.name} image={product.image} price={product.price} />
+                    </div>
+                )
+            })}
+        </div>
     )
 }
