@@ -7,8 +7,9 @@ export default function useProductById(id) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/product/${id}`).then(({ data }) => {
-            setCharacter(data);
+        axios(`${BASE_URL}product/get-one-product/${id}`).then(({ data }) => {
+            console.log(data);
+            setCharacter(data.user);
             setLoading(false);
         });
         return setCharacter({});

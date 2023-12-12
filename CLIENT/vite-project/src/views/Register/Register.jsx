@@ -125,7 +125,7 @@ export default function Register() {
 
             <div className="flex justify-center items-center gap-32 ">
                 <div className="SideImage pl-4 pr-5 pt-20 pb-16 bg-sky-50 rounded-tr rounded-br justify-center items-center flex">
-                    <RegisterImage avatar={avatar} handler={setAvatar} />
+                    <RegisterImage file={avatar} setFile={setAvatar} />
                 </div>
                 <section className="flex-col justify-start items-start gap-6 inline-flex">
                     <div className="flex-col justify-start items-start gap-6 flex">

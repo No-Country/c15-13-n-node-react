@@ -1,19 +1,20 @@
 import { NavLink } from "react-router-dom";
 
-export default function Card(props) {
+export default function Card(data) {
+    const { id, image, name, price } = data
     return (
         <div className="flex w-64 h-80 flex-col justify-start items-start gap-4">
             <div className="flex items-center justify-center w-64 h-64 relative bg-neutral-100 rounded">
-                <NavLink to={`/detail/${props.id}`}>
-                    <img className="w-44 h-32" src={props.image} alt="card" />
+                <NavLink to={`/detail/${id}`}>
+                    <img className="w-44 h-32" src={image} alt="card" />
                 </NavLink>
                 <button className="flex self-end absolute justify-center items-center gap-2 bg-black w-full">
                     <p className="text-white text-xl h-6 font-normal font-['Poppins'] leading-none">Agregar al carrito</p>
                 </button>
             </div>
 
-            <h2>{props.name}</h2>
-            <p className="text-red-500 text-base font-medium font-['Poppins'] leading-normal">${props.price}</p>
+            <h2>{name}</h2>
+            <p className="text-red-500 text-base font-medium font-['Poppins'] leading-normal">${price}</p>
         </div>
     )
 }
