@@ -13,6 +13,7 @@ const orderRouter = require("./routers/orderRouter");
 //Middlewares
 
 app.use(bodyParser.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(cors());
