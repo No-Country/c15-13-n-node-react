@@ -14,7 +14,7 @@ const { verifyToken, isAdmin } = require("../middleware/authJwt");
 // Product CRUD
 
 // Create product
-router.post("/create", verifyToken, createProductCtrl);
+router.post("/create", createProductCtrl);
 
 // Get products
 router.get("/get-products", getProductCtrl);

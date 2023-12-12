@@ -1,17 +1,29 @@
-import { Box, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Box, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { List } from "@mui/material"
+import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function NavListDrawer() {
+NavListDrawer.propTypes = {
+    navArrayLinks: PropTypes.any,
+    setOpen: PropTypes.func,
+};
+
+export default function NavListDrawer({ navArrayLinks, setOpen }) {
     return <Box sx={{ width: 250 }}>
         <nav>
             <List>
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemText>
-                            inicio
-                        </ListItemText>
-                    </ListItemButton>
-                </ListItem>
+                {navArrayLinks.map((item) => (
+                    <ListItem disablePadding key={item.title}>
+                        <ListItemButton component={NavLink} to={item.path} onClick={() => setOpen(false)}>
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText>
+                                {item.title}
+                            </ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+
+                ))
+                }
 
             </List>
         </nav>
