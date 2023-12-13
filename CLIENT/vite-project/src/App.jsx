@@ -7,8 +7,9 @@ import { useLocalStorage } from './hooks/useLocalStorage'
 import { useEffect } from 'react'
 
 
+
 function App() {
-  const [user, setUser] = useLocalStorage('user', '');
+  const [user, setUser] = useLocalStorage('user', {});
 
   useEffect(() => {
     console.log(user);
