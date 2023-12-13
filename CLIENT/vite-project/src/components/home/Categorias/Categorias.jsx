@@ -1,4 +1,5 @@
-import { getListCategorias } from "../../../constant/constantes"
+import { NavLink } from "react-router-dom";
+import { getListCategorias } from "../../../constant/constantes";
 
 export default function Categorias() {
 
@@ -22,7 +23,9 @@ export default function Categorias() {
             <div className="justify-start items-start gap-7 inline-flex">
                 {listaCategorias.map((cat) => (
                     <div className="CategoryPhone w-44 h-36 px-11 pt-6 rounded border border-black border-opacity-30 flex-col justify-end items-center gap-4 inline-flex" key={cat.categoria}>
-                        <img src={cat.imagen} alt="" />
+                        <NavLink to={"/productos"}>
+                            <img src={cat.imagen} alt="" />
+                        </NavLink>
                         <div className="MQuinasABaterAs text-center text-black text-base font-normal font-['Poppins'] leading-normal">{cat.categoria}</div>
                     </div>
                 )

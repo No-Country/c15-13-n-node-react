@@ -6,8 +6,10 @@ import Detail from "./Detail/Detail";
 import Contacto from "./Contacto/Contacto";
 import Nosotros from "./Nosotros/Nosotros";
 import Product from "./Product/Product";
+import Admin from "./Admin/Admin";
+import Acount from "./Acount/Acount"
 
 
 export {
-    Home, Register, Login, Cart, Detail, Contacto, Nosotros, Product
+    Home, Register, Login, Cart, Detail, Contacto, Nosotros, Product, Admin, Acount
 }

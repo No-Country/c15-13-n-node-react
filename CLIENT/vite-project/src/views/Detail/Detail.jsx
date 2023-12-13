@@ -1,14 +1,22 @@
 //import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-//import useProductById from '../../hooks/useProductById';
-import { getListProduct } from '../../constant/constantes';
+import useProductById from '../../hooks/useProductById';
+import { useEffect } from 'react';
+//import { getListProduct } from '../../constant/constantes';
 
 export default function Detail() {
     const { id } = useParams();
-    //const { character, loading } = useProductById(id);
-    //if (loading) return <h1>Cargando...</h1>;
-    const character = getListProduct[id - 1];
+    console.log(id);
+    const { character, loading } = useProductById(id);
     const cantidad = 1;
+
+    useEffect(() => {
+
+    }, [character, loading])
+
+    if (loading) {
+        return <h1>Cargando...</h1>
+    }
     return (
         <>
             <div className="w-full h-auto bg-white flex flex-wrap justify-around">

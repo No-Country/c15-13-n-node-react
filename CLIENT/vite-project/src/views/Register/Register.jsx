@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import RegisterImage from "../../components/RegisterImage/RegisterImage";
+const BASE_URL = import.meta.env.VITE_URL_BASE;
 
 
 export default function Register() {
@@ -96,7 +97,7 @@ export default function Register() {
             return;
         } */
 
-        axios.post('http://localhost:8000/api/user/register', {
+        axios.post(`${BASE_URL}user/register`, {
             lastName,
             firstName,
             email,
@@ -124,7 +125,7 @@ export default function Register() {
 
             <div className="flex justify-center items-center gap-32 ">
                 <div className="SideImage pl-4 pr-5 pt-20 pb-16 bg-sky-50 rounded-tr rounded-br justify-center items-center flex">
-                    <RegisterImage avatar={avatar} handler={setAvatar} />
+                    <RegisterImage file={avatar} setFile={setAvatar} />
                 </div>
                 <section className="flex-col justify-start items-start gap-6 inline-flex">
                     <div className="flex-col justify-start items-start gap-6 flex">
