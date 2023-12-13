@@ -5,8 +5,6 @@ const dbConnect = async() => {
     try {
         await mongoose.connect(`mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,{
             ssl: true,
-           // sslValidate: true,
-            //useNewUrlParser: true
         });
         console.log("Database connected...")    
     } catch (error) {
