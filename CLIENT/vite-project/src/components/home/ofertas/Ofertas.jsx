@@ -3,7 +3,8 @@ import Productos from "../../Productos/Productos";
 
 
 export default function Ofertas() {
-    const ofertas = useProductStore((state) => state.ofertas)
+
+    const ofertas = useProductStore((state) => state.products);
 
     return (
         <div className="w-full h-auto flex-col justify-start items-start py-10 gap-10 inline-flex">

@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router-dom"
 import App from './App.jsx'
 import './styles/index.css'
 import { ThemeProvider, createTheme } from "@mui/material"
+import { FiltersProvider } from './context/filters.jsx'
+import { CartProvider } from './context/cart.jsx'
 
 const theme = createTheme(
   {
@@ -21,8 +23,12 @@ const theme = createTheme(
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <ThemeProvider theme={theme}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <CartProvider>
+      <FiltersProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </FiltersProvider>
+    </CartProvider>
   </ThemeProvider>,
 )

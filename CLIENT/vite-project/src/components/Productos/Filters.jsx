@@ -1,20 +1,21 @@
-import { useState } from "react";
 import { getListCategorias } from "../../constant/constantes"
+import { useFilters } from "../../hooks/useFilters";
 
-export function Filters({ onChange }) {
-    const [minPrice, setMinPrice] = useState(0);
+export function Filters() {
+
+    const { filters, setFilters } = useFilters();
+
     const listCategorias = getListCategorias;
 
     const handleChangeMinPrice = (event) => {
-        setMinPrice(event.taget.value);
-        onChange(prevState => ({
+        setFilters(prevState => ({
             ...prevState,
             minPrice: event.target.value,
         }))
     }
 
     const handleChangeCategory = (event) => {
-        onChange(prevState => ({
+        setFilters(prevState => ({
             ...prevState,
             category: event.target.value,
         }))
@@ -23,8 +24,8 @@ export function Filters({ onChange }) {
         <section className="flex justify-between w-full py-10">
             <div>
                 <label htmlFor="price">Precio</label>
-                <input type="range" id='price' min='0' max='100000' onChange={handleChangeMinPrice} />
-                <span>${minPrice}</span>
+                <input type="range" id='price' min='0' max='100000' value={filters.minPrice} onChange={handleChangeMinPrice} />
+                <span>${filters.minPrice}</span>
 
             </div>
             <div>

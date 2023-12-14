@@ -1,42 +1,24 @@
-import { useEffect, useState } from "react";
 import Productos from "../../components/Productos/Productos";
 //import { getListProduct } from "../../constant/constantes";
 import { Filters } from "../../components/Productos/Filters";
-import { useProductStore } from "../../store/productStore";
-
-function useFilters() {
-    const [filters, setFilters] = useState({
-        category: 'all',
-        minPrice: 0,
-    });
-    const filterProducts = (products) => {
-        return products.filter(product => {
-            return (
-                Number(product.price) >= filters.minPrice &&
-                (
-                    filters.category === 'all' ||
-                    product.category === filters.category
-                )
-            )
-        })
-    }
-    return { filterProducts, setFilters }
-}
+import { useFilters } from "../../hooks/useFilters";
+import { useProductStore } from "../../store/productStore"
+import { useEffect } from "react";
 
 export default function Product() {
-    const allProducts = useProductStore((state) => state.products);
-    //const [products] = useState(getListProduct);
-    const { filterProducts, setFilters } = useFilters();
-    const filteredProducts = filterProducts(allProducts);
-    const { getProduct } = useProductStore();
+    const { filterProducts } = useFilters();
+    const products = useProductStore(state => state.products);
+    const { getProduct } = useProductStore()
 
     useEffect(() => {
-        !allProducts && getProduct();
-    }, [allProducts])
+        getProduct();
+    }, [])
+
+    const filteredProducts = filterProducts(products)
 
     return (
         <>
-            <Filters onChange={setFilters} />
+            <Filters />
             <Productos products={filteredProducts} />
         </>
     )

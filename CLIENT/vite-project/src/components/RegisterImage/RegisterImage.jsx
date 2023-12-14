@@ -19,6 +19,7 @@ export default function RegisterImage(data) {
         if (selectedFile) {
             setInputValue(URL.createObjectURL(selectedFile));
         }
+        console.log('se selecciono la imagen');
     };
 
 
