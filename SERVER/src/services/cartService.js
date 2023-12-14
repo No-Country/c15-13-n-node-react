@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
 const Cart = require("../models/Cart");
 const Product = require("../models/Product");
 
@@ -28,6 +26,12 @@ const fillCartService = async (user, productId, quantity) => {
   const price = product.price;
   const name = product.name;
 
+  if (quantity > product.stock) {
+    return {
+      message: "No hay suficiente existencia verifique la cantidad...",
+      status: false,
+    };
+  }
   //If cart already exists for user,
 
   if (cart) {
@@ -44,6 +48,11 @@ const fillCartService = async (user, productId, quantity) => {
         return acc + curr.quantity * curr.price;
       }, 0);
       cart.products[productIndex] = product;
+      let tot = cart.products.map((prod) => prod.quantity);
+      cart.totalProducts = tot.reduce((total, number) => total + number, 0);
+      await Product.findByIdAndUpdate(productId, {
+        $inc: { stock: -quantity },
+      });
       await cart.save();
       return {
         cart,
@@ -54,6 +63,11 @@ const fillCartService = async (user, productId, quantity) => {
       cart.totalPrice = cart.products.reduce((acc, curr) => {
         return acc + curr.quantity * curr.price;
       }, 0);
+      let tot = cart.products.map((prod) => prod.quantity);
+      cart.totalProducts = tot.reduce((total, number) => total + number, 0);
+      await Product.findByIdAndUpdate(productId, {
+        $inc: { stock: -quantity },
+      });
       await cart.save();
       return {
         cart,
@@ -67,7 +81,11 @@ const fillCartService = async (user, productId, quantity) => {
       products: [{ product: productId, name, quantity, price }],
       totalPrice: quantity * price,
     });
-
+    let tot = newCart.products.map((prod) => prod.quantity);
+    newCart.totalProducts = tot.reduce((total, number) => total + number, 0);
+    await Product.findByIdAndUpdate(productId, {
+      $inc: { stock: -quantity },
+    });
     return {
       newCart,
       success: true,
@@ -90,6 +108,11 @@ const deleteProductCartService = async (user, productId) => {
     cart.totalPrice = cart.products.reduce((acc, curr) => {
       return acc + curr.quantity * curr.price;
     }, 0);
+    let tot = cart.products.map((prod) => prod.quantity);
+    cart.totalProducts = tot.reduce((total, number) => total + number, 0);
+    await Product.findByIdAndUpdate(productId, {
+      $inc: { stock: product.quantity },
+    });
     cart = await cart.save();
     return {
       cart,

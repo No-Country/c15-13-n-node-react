@@ -17,15 +17,21 @@ const orderSchema = new mongoose.Schema(
         name: String,
         quantity: {
           type: Number,
-          required: true,
           min: 1,
           default: 1,
+        },
+        price: {
+          type: Number,
+          default: 0,
         },
       },
     ],
     totalPrice: {
       type: Number,
-      required: true,
+      default: 0,
+    },
+    totalProducts: {
+      type: Number,
       default: 0,
     },
     date: {

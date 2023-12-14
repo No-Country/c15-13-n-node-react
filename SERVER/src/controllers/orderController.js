@@ -1,4 +1,4 @@
-const { getOrderByIdService } = require("../services/cartService");
+const { getOrderByIdService } = require("../services/orderService");
 
 const asyncHandler = require("express-async-handler");
 
