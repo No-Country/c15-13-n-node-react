@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
@@ -24,17 +24,26 @@ export const Carrousel = () => {
         setSlideIndex(index);
     };
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 3000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
 
     return (
         <div className="flex flex-col py-6 w-4/5 h-auto bg-black self-center">
-            <div className="flex items-center h-auto w-full">
-                <div className="flex w-1/2 ">
-                    <div className=" w-4/5 px-12 text-neutral-50 text-5xl font-semibold font-['Inter'] leading-auto tracking-widest">
+            <div className="flex items-center h-auto w-full flex-wrap">
+                <div className="flex w-full sm:w-1/2 ">
+                    <div className="flex w-4/5 px-12 text-neutral-50 text-4xl font-semibold font-['Inter'] leading-auto tracking-widest">
                         Qué maquina necesita tu jardín?
                     </div>
                 </div>
-                <picture className="bg-transparent w-1/2 flex justify-center items-center">
+                <picture className="bg-transparent sm:w-1/2 flex justify-center items-center">
                     <img className=" w-4/5 h-auto" src={images[slideIndex]} />
                 </picture>
                 <div className="absolute w-4/5 flex justify-between items-center">

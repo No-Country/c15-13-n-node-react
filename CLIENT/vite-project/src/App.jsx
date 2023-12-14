@@ -28,7 +28,7 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/productos" element={<Product />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route element={<ProtectedRoute isAllowed={!!user} />}>
+          <Route element={<ProtectedRoute isAllowed={!!user} redirectTo='/register' />}>
             <Route path='/acount' element={<Acount user={user} setUser={setUser} />} />
             <Route path="/cart" element={<Cart />} />
           </Route>

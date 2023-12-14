@@ -4,8 +4,8 @@ import FormInput from "../../components/Register/FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Login(props) {
-    const { user, setUser } = props;
+export default function Login(data) {
+    const { user, setUser } = data;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

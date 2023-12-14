@@ -1,7 +1,15 @@
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import { useState } from 'react';
 
 export default function Contacto() {
+
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+
+    const handlerSubmit = () => {
+        alert("Su mensaje fue enviado exitosamente")
+    }
 
     return (
         < >
@@ -10,13 +18,17 @@ export default function Contacto() {
 
 
                 <div className="px-8 py-10 bg-white rounded shadow justify-center items-center inline-flex">
-                    <div className=" self-stretch flex-col justify-start items-end gap-8 inline-flex">
+                    <form onSubmit={handlerSubmit} className=" self-stretch flex-col justify-start items-end gap-4 inline-flex">
+                        <label htmlFor="nombre" className='flex self-start'>Nombre</label>
+                        <input name='nombre' value={name} required onChange={(event) => setName(event.target.value)} type="text" className='flex w-full bg-slate-200' />
+                        <label htmlFor="correo" className='flex self-start'>Email</label>
+                        <input name='correo' value={email} required onChange={(event) => setEmail(event.target.value)} type="email" className='flex w-full bg-slate-200' />
                         <textarea name="message" cols="30" rows="10" className=' bg-gray-300'></textarea>
 
                         <div className="Button px-12 py-4 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
-                            <div className="VerTodosLosProductos text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">Send Massage</div>
+                            <button className=" bg-transparent text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">Send Massage</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div className="px-9 pt-10 pb-12 bg-white rounded shadow flex-col justify-around items-center inline-flex">
                     <div className="self-stretch flex flex-col justify-evenly items-center gap-8">

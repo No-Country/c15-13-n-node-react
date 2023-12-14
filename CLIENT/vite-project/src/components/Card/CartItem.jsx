@@ -10,8 +10,8 @@ export default function CartItem(data) {
             <div className='flex items-center'>
                 <strong className=' text-white'>{name}</strong>
             </div>
-            <div>
-                <small>
+            <div className='flex items-center'>
+                <small className='text-white w-10 text-lg'>
                     {quantity}
                 </small>
                 <div className="flex flex-col w-10">
@@ -23,7 +23,7 @@ export default function CartItem(data) {
                     </button>
                 </div>
             </div>
-            <div>
+            <div className='text-white flex items-center'>
                 ${price}
             </div>
         </li>

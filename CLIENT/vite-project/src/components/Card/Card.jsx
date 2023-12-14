@@ -18,7 +18,7 @@ export default function Card(data) {
                     <img className="w-44 h-32" src={image} alt="card" />
                 </NavLink>
                 <button onClick={() => { isProductInCart ? removeFromCart(data) : addToCart(data) }} className={`flex self-end absolute justify-center items-center gap-2 w-full ${isProductInCart ? 'bg-red-500' : 'bg-black'}`}>
-                    {isProductInCart ? <RemoveShoppingCartOutlinedIcon color="white" /> : <AddShoppingCartOutlinedIcon />}
+                    {isProductInCart ? <RemoveShoppingCartOutlinedIcon style={{ color: "white" }} /> : <AddShoppingCartOutlinedIcon style={{ color: "white" }} />}
                 </button>
             </div>
 

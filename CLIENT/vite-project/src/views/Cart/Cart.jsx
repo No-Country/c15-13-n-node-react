@@ -3,17 +3,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useCart } from "../../hooks/useCart";
 import { useEffect } from "react";
 import CartItem from "../../components/Card/CartItem";
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import RemoveIcon from '@mui/icons-material/Remove';
-
 
 export default function Cart() {
     //hacer las card del carrito responsive
-    const { cart, clearCart, addToCart, removeFromCart } = useCart()
+    const { cart, clearCart, addToCart, removeFromCart, calculateTotalPrice } = useCart()
+    let priceTotal = calculateTotalPrice();
 
     useEffect(() => {
-        console.log(cart[0]);
-    }, [])
+        priceTotal = calculateTotalPrice();
+    }, [cart])
     const handlerSubmit = () => {
 
     }
@@ -35,14 +33,14 @@ export default function Cart() {
 
                         <div className="w-full bg-black ">
                             <ul className="p-2 m-1">
-                                {cart ? cart?.map((product) =>
+                                {cart.length ? cart?.map((product) =>
                                     <CartItem
                                         key={product.id}
                                         addToCart={() => addToCart(product)}
                                         removeFromCart={() => removeFromCart(product)}
                                         id={product.id} image={product.image} name={product.name} price={product.price} quantity={product.quantity} />
 
-                                ) : <h1>No hay productos añadidos al carrito</h1>}
+                                ) : <h1 className=" text-white w-full flex ">No hay productos añadidos al carrito</h1>}
                             </ul>
                         </div>
 
@@ -66,7 +64,7 @@ export default function Cart() {
                         <div className="left-[24px] top-[32px] text-black text-xl font-medium font-['Poppins'] leading-7">Ticket</div>
                         <div className="flex justify-start items-start gap-80 p-2">
                             <div className="text-black text-base font-normal font-['Poppins'] leading-normal">Total:</div>
-                            <div className="text-black text-base font-normal font-['Poppins'] leading-normal">$1750</div>
+                            <div className="text-black text-base font-normal font-['Poppins'] leading-normal">${priceTotal}</div>
                         </div>
                         <div className="px-12 bg-black rounded justify-center items-center gap-2.5 inline-flex">
                             <button onClick={handlerSubmit} className="text-neutral-50 bg-transparent px-12 py-4 text-base font-medium font-['Poppins'] leading-normal">Comprar</button>

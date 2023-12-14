@@ -1,11 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getListCategorias } from "../../../constant/constantes";
+import { useFilters } from "../../../hooks/useFilters";
 
 export default function Categorias() {
-
+    const { setFilters } = useFilters();
+    const navigate = useNavigate();
 
     const listaCategorias = getListCategorias;
 
+    const handlerCategory = (event) => {
+        console.log(event);
+        setFilters(prevState => ({
+            ...prevState,
+            category: event,
+        }))
+        navigate("/productos")
+    }
 
     return (
         <div className="w-full h-auto flex-col justify-start items-center gap-14 inline-flex  py-40">
@@ -20,17 +30,15 @@ export default function Categorias() {
                     <div className="BrowseByCategory text-black text-4xl font-semibold font-['Inter'] leading-10 tracking-wider">Buscar por Categoria</div>
                 </div>
             </div>
-            <div className="justify-start items-start gap-7 inline-flex">
+            <div className="flex flex-wrap justify-center items-start gap-7">
                 {listaCategorias.map((cat) => (
-                    <div className="CategoryPhone w-44 h-36 px-11 pt-6 rounded border border-black border-opacity-30 flex-col justify-end items-center gap-4 inline-flex" key={cat.categoria}>
-                        <NavLink to={"/productos"}>
-                            <img src={cat.imagen} alt="" />
-                        </NavLink>
+                    <div onClick={() => handlerCategory((cat.categoria))} className="CategoryPhone w-44 h-36 px-11 pt-6 rounded border border-black border-opacity-30 flex-col justify-end items-center gap-4 inline-flex" key={cat.categoria}>
+                        <img src={cat.imagen} alt="" />
                         <div className="MQuinasABaterAs text-center text-black text-base font-normal font-['Poppins'] leading-normal">{cat.categoria}</div>
                     </div>
                 )
                 )}
             </div>
-        </div>
+        </div >
     )
 }

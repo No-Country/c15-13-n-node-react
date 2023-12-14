@@ -1,10 +1,17 @@
+import { useEffect } from "react";
 import { useProductStore } from "../../../store/productStore";
 import Productos from "../../Productos/Productos";
+import { NavLink } from "react-router-dom";
 
 
 export default function Ofertas() {
 
-    const ofertas = useProductStore((state) => state.products);
+    const ofertas = useProductStore((state) => state.newProducts);
+    const { getProduct } = useProductStore()
+
+    useEffect(() => {
+        getProduct()
+    }, [])
 
     return (
         <div className="w-full h-auto flex-col justify-start items-start py-10 gap-10 inline-flex">
@@ -24,6 +31,9 @@ export default function Ofertas() {
             <div className="flex w-full justify-center items-start gap-7">
                 <Productos products={ofertas} />
             </div>
+            <NavLink className="flex self-center" to={"/productos"}>
+                <button >Ver mas</button>
+            </NavLink>
         </div>
     )
 }
