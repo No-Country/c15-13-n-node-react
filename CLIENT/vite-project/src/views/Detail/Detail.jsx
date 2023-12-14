@@ -2,12 +2,13 @@
 import { useParams } from 'react-router-dom';
 import useProductById from '../../hooks/useProductById';
 import { useEffect } from 'react';
+import { useCart } from '../../hooks/useCart';
 //import { getListProduct } from '../../constant/constantes';
 
 export default function Detail() {
     const { id } = useParams();
-    console.log(id);
     const { character, loading } = useProductById(id);
+    const { addToCart } = useCart();
     const cantidad = 1;
 
     useEffect(() => {
@@ -46,8 +47,8 @@ export default function Detail() {
                         </div>
 
                         <div className="w-10 h-11 px-2 py-2.5 bg-red-500 rounded-tr rounded-br flex-col justify-center items-center inline-flex">
-                            <div className="w-6 h-6 flex-col justify-start items-center flex">+</div>
-                            <div>-</div>
+                            <button onClick={addToCart} className="w-6 h-6 flex-col justify-start items-center flex">+</button>
+
                         </div>
                     </div>
                     <div className="px-12 py-2.5 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
