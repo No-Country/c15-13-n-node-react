@@ -1,4 +1,4 @@
-const { getCartByIdService, deleteProductCartService } = require("../services/cartService");
+const { getCartByIdService, fillCartService, deleteProductCartService } = require("../services/cartService");
 
 const asyncHandler = require("express-async-handler");
 
@@ -26,7 +26,7 @@ const fillCartCtrl = asyncHandler(async (req, res) => {
 const deleteProductCartCtrl = asyncHandler(async (req, res) => {
     try {
       const owner = req.user._id;
-      const { productId } = req.query.itemId;
+      const { productId } = req.query;
       res.status(200).send(await deleteProductCartService(owner, productId));
     } catch (error) {
       console.log(error);
