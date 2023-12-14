@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 const Cart = require("../models/Cart");
 const Product = require("../models/Product");
 
@@ -23,14 +25,14 @@ const fillCartService = async (user, productId, quantity) => {
     };
   }
 
-  const price = product?.price;
-  const name = product?.name;
+  const price = product.price;
+  const name = product.name;
 
   //If cart already exists for user,
 
   if (cart) {
     const productIndex = cart.products.findIndex(
-      (product) => product?.product._id === productId
+      (product) => product.product._id.toString() === productId
     );
 
     //check if product exists or not
@@ -41,7 +43,6 @@ const fillCartService = async (user, productId, quantity) => {
       cart.totalPrice = cart.products.reduce((acc, curr) => {
         return acc + curr.quantity * curr.price;
       }, 0);
-
       cart.products[productIndex] = product;
       await cart.save();
       return {
@@ -49,7 +50,7 @@ const fillCartService = async (user, productId, quantity) => {
         success: true,
       };
     } else {
-      cart.products.push({ productId, name, price });
+      cart.products.push({ product: productId, name, quantity, price });
       cart.totalPrice = cart.products.reduce((acc, curr) => {
         return acc + curr.quantity * curr.price;
       }, 0);
@@ -61,10 +62,9 @@ const fillCartService = async (user, productId, quantity) => {
     }
   } else {
     //no cart exists, create one
-
     const newCart = await Cart.create({
       user,
-      products: [{ productId, name, quantity, price }],
+      products: [{ product: productId, name, quantity, price }],
       totalPrice: quantity * price,
     });
 
@@ -78,7 +78,7 @@ const fillCartService = async (user, productId, quantity) => {
 const deleteProductCartService = async (user, productId) => {
   let cart = await Cart.findOne({ user });
   const productIndex = cart.products.findIndex(
-    (product) => product?.product._id === productId
+    (product) => product.product._id.toString() === productId
   );
   if (productIndex > -1) {
     let product = cart.products[productIndex];
