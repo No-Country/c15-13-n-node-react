@@ -3,7 +3,9 @@ import FormInput from "../../components/Register/FormInput";
 //import { NavLink } from "react-router-dom";
 import axios from "axios";
 import RegisterImage from "../../components/RegisterImage/RegisterImage";
+import validateProduct from "./validateProduct";
 const BASE_URL = import.meta.env.VITE_URL_BASE;
+
 
 
 export default function AddProduct(data) {
@@ -14,7 +16,6 @@ export default function AddProduct(data) {
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
     const [image, setImage] = useState(null);
-
     const [errors, setErrors] = useState({});
     const formInputs = [
         {
@@ -71,16 +72,39 @@ export default function AddProduct(data) {
 
     ];
 
-    const handlerSubmit = (e) => {
-        let base64;
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    };
+    const handlerSubmit = async (e) => {
+        let base64String;
         e.preventDefault();
 
-        console.log(user);
-        const reader = new FileReader();
-        reader.onload = () => {
-            base64 = reader.result;
-        };
-        reader.readAsDataURL(image);
+        setErrors(validateProduct({
+            name,
+            reference,
+            description,
+            price,
+            category,
+        }))
+
+        if (!image) {
+            alert('No se ha seleccionado ninguna imagen');
+            return;
+        }
+
+        try {
+            base64String = await convertToBase64(image);
+            // Resto del código para enviar la cadena de base64 a través de axios
+        } catch (error) {
+            console.error('Error al subir imagen:', error);
+        }
 
         axios.post(`${BASE_URL}product/create`, {
             name,
@@ -88,11 +112,11 @@ export default function AddProduct(data) {
             description,
             price,
             category,
-            image: base64,
+            image: base64String,
 
         }, {
             headers: {
-                authorization: `Bearer ${user.token}`,
+                'x-access-token': `${user.token}`,
             }
         }
         ).then(res => {

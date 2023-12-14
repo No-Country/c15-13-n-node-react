@@ -1,5 +1,3 @@
-
-import { useEffect } from "react";
 import { useProductStore } from "../../../store/productStore";
 import Productos from "../../Productos/Productos";
 
