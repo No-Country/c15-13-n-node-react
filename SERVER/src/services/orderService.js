@@ -1,13 +1,14 @@
-const Order = require("../models/Order");
+const Cart = require("../models/Cart");
 
 const getOrderByIdService = async (user) => {
-  const order = await Order.find({ user }).sort({ date: -1 });
+  const order = await Cart.findOne({ user });
   if (!order) {
     return {
-      message: "Orden no registrada...",
+      message: "Orden no encontrada...",
       status: false,
     };
   }
+
   return { order, status: true };
 };
 
