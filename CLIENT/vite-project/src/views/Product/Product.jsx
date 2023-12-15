@@ -5,10 +5,11 @@ import { useFilters } from "../../hooks/useFilters";
 import { useProductStore } from "../../store/productStore"
 import { useEffect } from "react";
 
+
 export default function Product() {
     const { filterProducts } = useFilters();
+    const { getProduct } = useProductStore();
     const products = useProductStore(state => state.products);
-    const { getProduct } = useProductStore()
 
     useEffect(() => {
         getProduct();

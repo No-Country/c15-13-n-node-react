@@ -4,11 +4,13 @@ import FormInput from "../../components/Register/FormInput";
 import axios from "axios";
 import RegisterImage from "../../components/RegisterImage/RegisterImage";
 import validateProduct from "./validateProduct";
+import { getListCategorias } from "../../constant/constantes";
 const BASE_URL = import.meta.env.VITE_URL_BASE;
 
 
 
 export default function AddProduct(data) {
+    const listCategorias = getListCategorias;
     const { user } = data;
     const [name, setName] = useState('');
     const [reference, setReference] = useState('');
@@ -58,17 +60,6 @@ export default function AddProduct(data) {
                 //setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
             },
         },
-        {
-            name: 'Categoria',
-            type: 'text',
-            autoComplete: '',
-            value: category,
-            onChange: (e) => {
-                setCategory(e.target.value);
-                //setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
-            },
-        },
-
 
     ];
 
@@ -165,6 +156,14 @@ export default function AddProduct(data) {
                                 </div>
                             ))
                         }
+                        <label htmlFor="category">Categoria</label>
+                        <select name="category" id="cartegory" onChange={(value) => setCategory(value)} >
+                            <option value="all">Todas</option>
+                            {listCategorias.map((cat, index) => (
+                                <option key={index} value={cat.categoria}>{cat.categoria}</option>
+                            ))}
+
+                        </select>
 
                         <button onClick={handlerSubmit} className="Button px-32 py-4 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
                             <p className="text-white bg-transparent text-base font-medium font-['Poppins'] leading-normal">Agregar producto</p>

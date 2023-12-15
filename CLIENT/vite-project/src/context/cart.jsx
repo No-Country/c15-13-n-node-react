@@ -48,14 +48,23 @@ export function CartProvider({ children }) {
     const clearCart = () => {
         setCart([])
     }
-    const removeFromCart = () => { }
+    const removeFromCart = (product) => {
+        setCart(prevState => prevState.filter(item => item.id === product.id))
+    }
+
+    const calculateTotalPrice = () => {
+        return cart.reduce((total, product) => {
+            return total + product.price * product.quantity;
+        }, 0);
+    };
 
     return (
         <CartContex.Provider value={{
             cart,
             addToCart,
             removeFromCart,
-            clearCart
+            clearCart,
+            calculateTotalPrice
         }}
         >
             {children}

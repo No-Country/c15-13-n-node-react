@@ -1,15 +1,24 @@
 import { NavLink } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 
 export default function Card(data) {
-    const { id, image, name, price, addToCart } = data
+    const { id, image, name, price } = data;
+    const { cart, addToCart, removeFromCart } = useCart();
+    const checkProductInCart = product => {
+        return cart.some(item => item.id === product.id)
+    }
+    const isProductInCart = checkProductInCart(data);
+
     return (
         <div className="flex w-64 h-80 flex-col justify-start items-start gap-4">
             <div className="flex items-center justify-center w-64 h-64 relative bg-neutral-100 rounded">
                 <NavLink to={`/detail/${id}`}>
                     <img className="w-44 h-32" src={image} alt="card" />
                 </NavLink>
-                <button onClick={() => addToCart} className="flex self-end absolute justify-center items-center gap-2 bg-black w-full">
-                    <p className="text-white text-xl h-6 font-normal font-['Poppins'] leading-none">Agregar al carrito</p>
+                <button onClick={() => { isProductInCart ? removeFromCart(data) : addToCart(data) }} className={`flex self-end absolute justify-center items-center gap-2 w-full ${isProductInCart ? 'bg-red-500' : 'bg-black'}`}>
+                    {isProductInCart ? <RemoveShoppingCartOutlinedIcon style={{ color: "white" }} /> : <AddShoppingCartOutlinedIcon style={{ color: "white" }} />}
                 </button>
             </div>
 
