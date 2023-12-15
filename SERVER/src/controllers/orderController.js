@@ -1,4 +1,7 @@
-const { getOrderByIdService } = require("../services/orderService");
+const {
+  getOrderByIdService,
+  createSessionService,
+} = require("../services/orderService");
 
 const asyncHandler = require("express-async-handler");
 
@@ -12,4 +15,16 @@ const getOrderCtrl = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getOrderCtrl };
+const createSessionCtrl = asyncHandler(async (req, res) => {
+  try {  
+   res.status(200).send(await createSessionService(req.body));
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error });
+  }
+});
+
+module.exports = {
+  getOrderCtrl,
+  createSessionCtrl,
+};
