@@ -11,7 +11,7 @@ router.get("/get-order", verifyToken, getOrderCtrl);
 //Payment checkout
 router.post("/stripe/create-checkout-session", verifyToken, createSessionCtrl);
 
-//Payment success
+//Payment success 
 router.get("/stripe/success", (req, res) => res.send('Success...'));
 
 //Cancel payment

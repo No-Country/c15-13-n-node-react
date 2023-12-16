@@ -42,18 +42,15 @@ const createSessionService = async (order) => {
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: "payment",
-    success_url: "https://ecommerce-upload-backend.onrender.com/api/order/stripe/success",
-    cancel_url: "https://ecommerce-upload-backend.onrender.com/api/stripe/cancel",
+    success_url: `${process.env.CLIENT_URL}/checkout-success`, 
+    cancel_url: `${process.env.CLIENT_URL}/cart`,        
     metadata: {
       description: 'Payment Tienda Verde',
     },
   });
-
   return {
-    message: "Pago exitoso...",
-    session,
-    status: true,
+    url: session.url,
   };
 };  
-
+// https://www.youtube.com/watch?v=72iEz5iopqQ
 module.exports = { getOrderByIdService, createSessionService };
