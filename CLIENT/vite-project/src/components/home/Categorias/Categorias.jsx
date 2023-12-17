@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getListCategorias } from "../../../constant/constantes";
 import { useFilters } from "../../../hooks/useFilters";
 
@@ -9,7 +9,6 @@ export default function Categorias() {
     const listaCategorias = getListCategorias;
 
     const handlerCategory = (event) => {
-        console.log(event);
         setFilters(prevState => ({
             ...prevState,
             category: event,

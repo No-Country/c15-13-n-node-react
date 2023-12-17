@@ -9,7 +9,7 @@ export default function Productos({ products }) {
          console.log("aca llego");
      } */
     return (
-        <div className="flex flex-row flex-wrap">
+        <div className="flex justify-center flex-row flex-wrap">
             {listProducts?.map((product, index) => {
                 return (
                     <div key={index}>

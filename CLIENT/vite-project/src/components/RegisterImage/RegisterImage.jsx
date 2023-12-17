@@ -20,17 +20,18 @@ export default function RegisterImage(data) {
             setInputValue(URL.createObjectURL(selectedFile));
         }
         console.log('se selecciono la imagen');
+        console.log((event.target.files));
     };
 
 
     return (
-        <div className="flex relative h-80 w-80 aligne-center justify-center">
-            <img src={inputValue === "" ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" : inputValue} alt="Foto usuario"
+        <div className="flex flex-col relative h-80 w-80 aligne-center justify-center">
+            <img src={inputValue === "" ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" : inputValue} alt="Foto"
                 className="absolute overflow-hidden object-cover rounded-xl" />
             <div className="flex flex-col justify-start">
                 <button className="flex relative rounded-full justify-center items-center text-white bg-red-500 w-5 h-10 " onClick={handlerClose}> X </button>
             </div>
-            <div className="flex flex-col relative justify-end">
+            <div className="flex flex-col relative h-full justify-end">
                 <input name="image" className="bg-white" type="file" onChange={handlerFileChange} />
             </div>
         </div>

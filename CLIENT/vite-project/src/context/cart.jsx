@@ -3,30 +3,15 @@ import { createContext, useState } from "react";
 //import { cartReducer, cartInitialState } from '../reducers/cart.js'
 export const CartContex = createContext()
 
-
-/* function useCartReducer() {
-    const [state, dispatch] = useState(cartReducer, cartInitialState)
-
-    const addToCart = product => dispatch({
-        type: 'ADD_TO_CART',
-        payload: product
-    })
-
-    const removeFromCart = product => dispatch({
-        type: 'REMOVE_FROM_CART',
-        payload: product
-    })
-
-    const clearCart = () => dispatch({ type: 'CLEAR_CART' })
-
-    return { state, addToCart, removeFromCart, clearCart }
-} */
-
 // la dependencia de usar React Context
 // es MÍNIMA
 export function CartProvider({ children }) {
     //const { state, addToCart, removeFromCart, clearCart } = useCartReducer()
     const [cart, setCart] = useState([]);
+
+    const checkProductInCart = product => {
+        return cart.some(item => item.id === product.id)
+    }
 
     const addToCart = product => {
         const productInCartIndex = cart.findIndex(item => item.id === product.id)
@@ -49,7 +34,18 @@ export function CartProvider({ children }) {
         setCart([])
     }
     const removeFromCart = (product) => {
-        setCart(prevState => prevState.filter(item => item.id === product.id))
+        setCart(prevState => prevState.filter(item => item.id !== product.id))
+    }
+
+    const discountOneProduct = (product) => {
+        const productInCartIndex = cart.findIndex(item => item.id === product.id);
+
+        if (cart[productInCartIndex].quantity === 1) {
+            return setCart(prevState => prevState.filter(item => item.id !== product.id))
+        }
+        const newCart = structuredClone(cart)
+        newCart[productInCartIndex].quantity -= 1
+        return setCart(newCart);
     }
 
     const calculateTotalPrice = () => {
@@ -63,8 +59,10 @@ export function CartProvider({ children }) {
             cart,
             addToCart,
             removeFromCart,
+            discountOneProduct,
             clearCart,
-            calculateTotalPrice
+            calculateTotalPrice,
+            checkProductInCart
         }}
         >
             {children}

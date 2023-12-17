@@ -1,17 +1,29 @@
 import { useEffect } from "react";
 import { useProductStore } from "../../../store/productStore";
 import Productos from "../../Productos/Productos";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useFilters } from "../../../hooks/useFilters";
 
 
 export default function Ofertas() {
 
     const ofertas = useProductStore((state) => state.newProducts);
+    const { setFilters } = useFilters();
+    const navigate = useNavigate();
+
     const { getProduct } = useProductStore()
 
     useEffect(() => {
         getProduct()
     }, [])
+
+    const handlerCategory = () => {
+        setFilters(prevState => ({
+            ...prevState,
+            category: 'all',
+        }))
+        navigate("/productos")
+    }
 
     return (
         <div className="w-full h-auto flex-col justify-start items-start py-10 gap-10 inline-flex">
@@ -31,9 +43,8 @@ export default function Ofertas() {
             <div className="flex w-full justify-center items-start gap-7">
                 <Productos products={ofertas} />
             </div>
-            <NavLink className="flex self-center" to={"/productos"}>
-                <button >Ver mas</button>
-            </NavLink>
+
+            <button className="flex self-center" onClick={handlerCategory} >Ver mas</button>
         </div>
     )
 }

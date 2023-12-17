@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-const BASE_URL = import.meta.env.VITE_URL_BASE;
+import { BASE_URL } from "../constant/constantes";
+
 
 export default function useProductById(id) {
     const [character, setCharacter] = useState(null);

@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { create } from 'zustand'
-
-const BASE_URL = import.meta.env.VITE_URL_BASE;
-
+import { BASE_URL } from '../constant/constantes';
 
 export const useProductStore = create((set) => ({
     products: [],

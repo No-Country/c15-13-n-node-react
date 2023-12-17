@@ -1,32 +1,30 @@
-//import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useProductById from '../../hooks/useProductById';
-import { useEffect } from 'react';
 import { useCart } from '../../hooks/useCart';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import RemoveIcon from '@mui/icons-material/Remove';
 //import { getListProduct } from '../../constant/constantes';
 
 export default function Detail() {
     const { id } = useParams();
     const { character, loading } = useProductById(id);
-    const { addToCart } = useCart();
-    const cantidad = 1;
-
-    useEffect(() => {
-
-    }, [character, loading])
+    const { cart, addToCart, discountOneProduct, checkProductInCart } = useCart();
 
     if (loading) {
         return <h1>Cargando...</h1>
     }
+    const data = { id: character._id, name: character.name, image: character.image, price: character.price };
+    //setIsProductInCart(checkProductInCart(data))
+
     return (
         <>
             <div className="w-full h-auto bg-white flex flex-wrap justify-around">
 
-                <div className="h-96 px-7 pt-40 pb-32 bg-neutral-100 rounded flex-col justify-end items-center inline-flex">
+                <div className="w-full sm:w-1/2 h-96 px-7 pt-40 mb-2 pb-32 bg-neutral-100 rounded flex-col justify-center items-center inline-flex">
                     <img className="w-96 h-80" src={character?.image} />
                 </div>
 
-                <div>
+                <div className='w-full sm:w-96 p-4 h-96 gap-2 flex flex-col justify-center'>
                     <div className="w-96 text-black text-2xl font-semibold font-['Inter'] leading-normal tracking-wide">{character.name}</div>
                     <div className=" text-black text-2xl font-normal font-['Inter'] leading-normal tracking-wide">${character.price}</div>
                     <div className="justify-start items-start gap-4 inline-flex">
@@ -39,21 +37,25 @@ export default function Detail() {
                         {character.description}
                     </div>
 
-                    <div className="w-40 h-11justify-start items-start inline-flex">
-                        <div className="w-10 h-11 px-2 py-2.5 rounded-tl rounded-bl border border-black border-opacity-50 flex-col justify-center items-center inline-flex">
+                    <div className="w-40 h-14 justify-start items-start inline-flex">
+                        <div className="w-14 h-full px-2 py-2.5 rounded-tl rounded-bl border border-black border-opacity-50 flex-col justify-center items-center inline-flex">
                             <div className="w-6 h-6 relative flex-col justify-start items-start flex">
-                                {cantidad}
+                                {checkProductInCart(data) ? cart.find(product => product.id === character._id).quantity : 1}
                             </div>
                         </div>
 
-                        <div className="w-10 h-11 px-2 py-2.5 bg-red-500 rounded-tr rounded-br flex-col justify-center items-center inline-flex">
-                            <button onClick={addToCart} className="w-6 h-6 flex-col justify-start items-center flex">+</button>
-
+                        <div className="w-14 h-full bg-white border border-black rounded-tr rounded-br flex-col justify-center items-center inline-flex">
+                            <button className='flex bg-transparent w-full h-1/2 justify-center items-center' onClick={() => addToCart(data)}>
+                                <AddBoxIcon />
+                            </button>
+                            <button className='flex bg-transparent w-full  h-1/2 justify-center items-center' onClick={() => discountOneProduct(data)}>
+                                <RemoveIcon />
+                            </button>
                         </div>
                     </div>
-                    <div className="px-12 py-2.5 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
-                        <div className="text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">Comprar</div>
-                    </div>
+                    <button className=" bg-black rounded justify-center items-center gap-2.5 inline-flex">
+                        <p className="text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">Agregar al Carrito</p>
+                    </button>
                 </div>
 
 

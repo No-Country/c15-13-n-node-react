@@ -1,13 +1,9 @@
 import { useState } from "react";
 import FormInput from "../../components/Register/FormInput";
-//import { NavLink } from "react-router-dom";
 import axios from "axios";
 import RegisterImage from "../../components/RegisterImage/RegisterImage";
 import validateProduct from "./validateProduct";
-import { getListCategorias } from "../../constant/constantes";
-const BASE_URL = import.meta.env.VITE_URL_BASE;
-
-
+import { BASE_URL, getListCategorias } from "../../constant/constantes";
 
 export default function AddProduct(data) {
     const listCategorias = getListCategorias;
@@ -18,6 +14,7 @@ export default function AddProduct(data) {
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
     const [image, setImage] = useState(null);
+    const [stock, setStock] = useState(10);
     const [errors, setErrors] = useState({});
     const formInputs = [
         {
@@ -57,6 +54,16 @@ export default function AddProduct(data) {
             value: price,
             onChange: (e) => {
                 setPrice(e.target.value);
+                //setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
+            },
+        },
+        {
+            name: 'Stock',
+            type: 'number',
+            autoComplete: '',
+            value: stock,
+            onChange: (e) => {
+                setStock(e.target.value);
                 //setErrors(validate({ ...{ name, email, password, confirmPassword }, email: e.target.value }));
             },
         },
@@ -104,6 +111,7 @@ export default function AddProduct(data) {
             price,
             category,
             image: base64String,
+            stock,
 
         }, {
             headers: {
@@ -115,13 +123,13 @@ export default function AddProduct(data) {
             //localStorage.setItem('user', JSON.stringify(res.data.user));
             //navigate('/');
             alert(`${res.data.msg}`);
-            console.log(res.data);
-        }).catch(
-            (error) => {
-                console.log("error");
-                console.log(error.response.data.message);
 
-                alert(`Error al crear la cuenta${error.data.message}`)
+        }).catch(
+            error => {
+                alert(`Error al crear el producto`)
+                console.log("error");
+                console.log(error.data);
+
             }
         )
 
@@ -131,11 +139,11 @@ export default function AddProduct(data) {
     return (
         <div className="w-full h-full">
 
-            <div className="flex justify-center items-center gap-32 ">
-                <div className="SideImage pl-4 pr-5 pt-20 pb-16 justify-center items-center flex">
+            <div className=" flex w-full flex-wrap justify-around items-center">
+                <div className="w-full sm:w-1/2 justify-center items-center flex">
                     <RegisterImage file={image} setFile={setImage} />
                 </div>
-                <section className="flex-col justify-start items-start gap-6 inline-flex">
+                <section className="flex-col justify-start items-start gap-6 inline-flex w-full sm:w-1/2 ">
                     <div className="flex-col justify-start items-start gap-6 flex">
                         <div className="CreateAnAccount text-black text-4xl font-medium font-['Inter'] leading-loose tracking-wider">Nuevo Producto</div>
 

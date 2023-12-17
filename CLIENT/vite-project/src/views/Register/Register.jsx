@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import validate from "./validate";
 import FormInput from "../../components/Register/FormInput";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import RegisterImage from "../../components/RegisterImage/RegisterImage";
-const BASE_URL = import.meta.env.VITE_URL_BASE;
-
+import { BASE_URL } from "../../constant/constantes";
 
 export default function Register() {
     const [firstName, setFirstName] = useState('');
