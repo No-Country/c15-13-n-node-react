@@ -14,7 +14,6 @@ export default function Detail() {
         return <h1>Cargando...</h1>
     }
     const data = { id: character._id, name: character.name, image: character.image, price: character.price };
-    //setIsProductInCart(checkProductInCart(data))
 
     return (
         <>
@@ -34,7 +33,7 @@ export default function Detail() {
                         </div>
                     </div>
                     <div className="w-96 text-black text-sm font-normal font-['Poppins'] leading-tight">
-                        {character.description}
+                        {character.stock}
                     </div>
 
                     <div className="w-40 h-14 justify-start items-start inline-flex">
@@ -67,7 +66,7 @@ export default function Detail() {
                         <div className="text-red-500 text-4xl font-semibold font-['Inter'] leading-10 tracking-wider">Especificaciones Técnicas</div>
 
                     </div>
-                    <span>Aca van las espesificaciones</span>
+                    <span>{character.description}</span>
                 </div>
 
             </div>

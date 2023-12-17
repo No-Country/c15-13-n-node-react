@@ -1,6 +1,6 @@
 
-//export const BASE_URL = "https://ecommerce-upload-backend.onrender.com/api/"
-export const BASE_URL = "http://localhost:8000/api/"
+export const BASE_URL = "https://ecommerce-upload-backend.onrender.com/api/"
+//export const BASE_URL = "http://localhost:8000/api/"
 export const getListProduct = [{
     id: 1,
     name: 'Tijera de podar',

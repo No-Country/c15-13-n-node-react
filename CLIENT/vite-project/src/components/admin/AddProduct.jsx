@@ -12,7 +12,7 @@ export default function AddProduct(data) {
     const [reference, setReference] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('Otros Productos');
     const [image, setImage] = useState(null);
     const [stock, setStock] = useState(10);
     const [errors, setErrors] = useState({});
@@ -89,7 +89,6 @@ export default function AddProduct(data) {
             reference,
             description,
             price,
-            category,
         }))
 
         if (!image) {
@@ -101,9 +100,17 @@ export default function AddProduct(data) {
             base64String = await convertToBase64(image);
             // Resto del código para enviar la cadena de base64 a través de axios
         } catch (error) {
-            console.error('Error al subir imagen:', error);
+            console.log("error al subir la imagen");
         }
-
+        console.log({
+            name,
+            reference,
+            description,
+            price,
+            category,
+            image: base64String,
+            stock,
+        });
         axios.post(`${BASE_URL}product/create`, {
             name,
             reference,
@@ -112,7 +119,6 @@ export default function AddProduct(data) {
             category,
             image: base64String,
             stock,
-
         }, {
             headers: {
                 'x-access-token': `${user.token}`,
@@ -125,14 +131,12 @@ export default function AddProduct(data) {
             alert(`${res.data.msg}`);
 
         }).catch(
-            error => {
+            errors => {
                 alert(`Error al crear el producto`)
                 console.log("error");
-                console.log(error.data);
+                console.log(errors.msg);
 
-            }
-        )
-
+            })
     }
 
 
@@ -143,9 +147,9 @@ export default function AddProduct(data) {
                 <div className="w-full sm:w-1/2 justify-center items-center flex">
                     <RegisterImage file={image} setFile={setImage} />
                 </div>
-                <section className="flex-col justify-start items-start gap-6 inline-flex w-full sm:w-1/2 ">
+                <section className="flex-col justify-start items-center gap-6 inline-flex w-full sm:w-1/2 ">
                     <div className="flex-col justify-start items-start gap-6 flex">
-                        <div className="CreateAnAccount text-black text-4xl font-medium font-['Inter'] leading-loose tracking-wider">Nuevo Producto</div>
+                        <div className=" py-10 text-black text-4xl font-medium font-['Inter'] leading-loose tracking-wider">Nuevo Producto</div>
 
                     </div>
                     <form className="flex-col justify-start items-center gap-5 flex">
@@ -165,8 +169,7 @@ export default function AddProduct(data) {
                             ))
                         }
                         <label htmlFor="category">Categoria</label>
-                        <select name="category" id="cartegory" onChange={(value) => setCategory(value)} >
-                            <option value="all">Todas</option>
+                        <select name="category" id="cartegory" value={category} onChange={(e) => setCategory(e.target.value)} >
                             {listCategorias.map((cat, index) => (
                                 <option key={index} value={cat.categoria}>{cat.categoria}</option>
                             ))}

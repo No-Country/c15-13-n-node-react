@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const { uploadImageCloud } = require("../utils/cloudinary");
 
 const createProductService = async (data) => {
-  const { name, reference, description, price, category, image } = data;
+  const { name, reference, description, price, category, image, stock } = data;
   const uploadedImage = image
     ? await uploadImageCloud(image)
     : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV8TrrnMZ9mo9lDemTXDLXxAJsY6hiqCKJ6w&usqp=CAU";
@@ -21,6 +21,7 @@ const createProductService = async (data) => {
     price,
     category,
     image: uploadedImage,
+    stock,
   });
 
   return {
