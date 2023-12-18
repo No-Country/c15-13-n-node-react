@@ -5,6 +5,7 @@ import { BASE_URL } from '../constant/constantes';
 export const useProductStore = create((set) => ({
     products: [],
     newProducts: [],
+
     getProduct: async () => {
         const products = (await axios(`${BASE_URL}product/get-products`)).data.users;
 

@@ -9,6 +9,12 @@ export function CartProvider({ children }) {
     //const { state, addToCart, removeFromCart, clearCart } = useCartReducer()
     const [cart, setCart] = useState([]);
 
+    const addListCart = listProduct => {
+        setCart([
+            ...listProduct
+        ])
+    }
+
     const checkProductInCart = product => {
         return cart.some(item => item.id === product.id)
     }
@@ -30,6 +36,20 @@ export function CartProvider({ children }) {
             }
         ]))
     }
+    //incluyo en el carrito el producto 
+    const addCantCart = (product, cant) => {
+        const productInCartIndex = cart.findIndex(item => item.id === product.id)
+
+        setCart(prevState => ([
+            ...prevState,
+            {
+                ...product,
+                quantity: cant,
+            }
+        ]))
+
+    }
+
     const clearCart = () => {
         setCart([])
     }
@@ -57,6 +77,7 @@ export function CartProvider({ children }) {
     return (
         <CartContex.Provider value={{
             cart,
+            addListCart,
             addToCart,
             removeFromCart,
             discountOneProduct,

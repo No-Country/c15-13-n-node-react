@@ -2,11 +2,11 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 export default function CartItem(data) {
-    const { image, price, name, quantity, addToCart, discountOneProduct } = data;
+    const { price, name, quantity, addToCart, discountOneProduct } = data;
     return (
         <li className=' w-full flex justify-between'>
             <div>
-                <img className=' w-20' src={image} alt={name} />
+                {/* <img className=' w-20' src={image} alt={name} /> */}
                 <div className='flex items-center'>
                     <strong className=' text-white'>{name}</strong>
                 </div>
