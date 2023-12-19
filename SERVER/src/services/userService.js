@@ -41,6 +41,7 @@ const loginService = async (data) => {
       lastname: findUser?.lastName,
       email: findUser?.email,
       mobile: findUser?.mobile,
+      role: findUser?.role,
       token: generateToken(findUser?._id),
       success: true,
     };

@@ -126,8 +126,27 @@ const deleteProductCartService = async (user, productId) => {
   }
 };
 
+const deleteCartService = async (cart) => {
+  const cartFound = await Cart.findOne({ _id: cart.id });
+  if (!cartFound) {
+    return {
+      message: "Carrito no encontrado...",
+      status: false,
+    };
+  }
+  const cartDelete = await Cart.deleteOne({ _id: cart.id });
+  if (!cartDelete) {
+    return {
+      message: "Error al eliminar el carrito...",
+      status: false,
+    };
+  }
+  return { msg: "Carrito eliminado...", status: true };
+};
+
 module.exports = {
   getCartByIdService,
   fillCartService,
   deleteProductCartService,
+  deleteCartService,
 };
