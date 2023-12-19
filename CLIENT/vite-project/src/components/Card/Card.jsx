@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
-import PaymentIcon from '@mui/icons-material/Payment';
+//import PaymentIcon from '@mui/icons-material/Payment';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios"
 import { BASE_URL } from "../../constant/constantes";

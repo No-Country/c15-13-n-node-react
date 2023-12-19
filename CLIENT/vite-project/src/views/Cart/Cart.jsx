@@ -1,17 +1,17 @@
 import { NavLink } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useCart } from "../../hooks/useCart";
+//import { useCart } from "../../hooks/useCart";
 import { useEffect, useState } from "react";
 import CartItem from "../../components/Card/CartItem";
 import axios from "axios";
 import { BASE_URL } from "../../constant/constantes";
-import { useProductStore } from "../../store/productStore";
+//import { useProductStore } from "../../store/productStore";
 
 export default function Cart(data) {
     const { user } = data;
     //hacer las card del carrito responsive
-    const { cart, clearCart, calculateTotalPrice, discountOneProduct } = useCart();
-    const products = useProductStore(state => state.products);
+    //const { cart, clearCart, calculateTotalPrice, discountOneProduct } = useCart();
+    //const products = useProductStore(state => state.products);
     const [productItem, setProductItem] = useState([]);
     const [totalPrice, setTotalPrice] = useState("");
     //let priceTotal = calculateTotalPrice();
