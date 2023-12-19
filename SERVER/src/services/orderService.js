@@ -38,20 +38,20 @@ const createSessionService = async (order) => {
     },
     quantity: product.quantity,
   }));
-    const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.CLIENT_URL}/checkout-success`, 
-    cancel_url: `${process.env.CLIENT_URL_PROD}/cart`,        
+    success_url: `${process.env.CLIENT_URL_PROD}/checkout-success`,
+    cancel_url: `${process.env.CLIENT_URL_PROD}/cart`,
     metadata: {
-      description: 'Payment Tienda Verde',
+      description: "Payment Tienda Verde",
     },
   });
   return {
     url: session.url,
     success: true,
   };
-};  
+};
 // https://www.youtube.com/watch?v=72iEz5iopqQ
 module.exports = { getOrderByIdService, createSessionService };
