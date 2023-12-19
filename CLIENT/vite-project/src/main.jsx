@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
     <CartProvider>
       <FiltersProvider>
-        <BrowserRouter>
+        <BrowserRouter> 
           <App />
         </BrowserRouter>
       </FiltersProvider>
