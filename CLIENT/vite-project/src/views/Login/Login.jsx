@@ -3,6 +3,7 @@ import { useState } from "react";
 import FormInput from "../../components/Register/FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../constant/constantes";
 
 export default function Login(data) {
     const { user, setUser } = data;
@@ -49,7 +50,7 @@ export default function Login(data) {
             return;
         }
 
-        axios.post('http://localhost:8000/api/user/login', {
+        axios.post(`${BASE_URL}user/login`, {
             email,
             password,
 
