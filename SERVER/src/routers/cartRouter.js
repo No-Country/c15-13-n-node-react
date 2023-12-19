@@ -4,6 +4,7 @@ const {
   getCartCtrl,
   fillCartCtrl,
   deleteProductCartCtrl,
+  deleteCartCtrl,
 } = require("../controllers/cartController");
 const { verifyToken } = require("../middleware/authJwt");
 
@@ -15,5 +16,8 @@ router.post("/fill-cart", verifyToken, fillCartCtrl);
 
 // Delete products from cart
 router.delete("/delete-product-cart", verifyToken, deleteProductCartCtrl);
+
+// Delete cart
+router.delete("/delete-cart/:id", verifyToken, deleteCartCtrl)
 
 module.exports = router;

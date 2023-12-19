@@ -21,7 +21,7 @@ const createSessionService = async (order) => {
   const cart = await Cart.findOne({ _id: OrderId });
   if (!cart) {
     return {
-      msg: "Carrito no encontrado...",
+      msg: "Carrito no encontrado por favor registrar productos...",
       success: false,
     };
   }
@@ -43,13 +43,14 @@ const createSessionService = async (order) => {
     line_items: lineItems,
     mode: "payment",
     success_url: `${process.env.CLIENT_URL}/checkout-success`, 
-    cancel_url: `${process.env.CLIENT_URL}/cart`,        
+    cancel_url: `${process.env.CLIENT_URL_PROD}/cart`,        
     metadata: {
       description: 'Payment Tienda Verde',
     },
   });
   return {
     url: session.url,
+    success: true,
   };
 };  
 // https://www.youtube.com/watch?v=72iEz5iopqQ
