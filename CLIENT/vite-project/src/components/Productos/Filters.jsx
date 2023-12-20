@@ -24,7 +24,7 @@ export function Filters() {
         <section className="flex justify-around items-center w-full py-10">
             <div>
                 <label htmlFor="price">Precio</label>
-                <input type="range" id='price' min='0' max='100000' value={filters.minPrice} onChange={handleChangeMinPrice} />
+                <input type="range" id='price' min='0' max='10000' value={filters.minPrice} onChange={handleChangeMinPrice} />
                 <span>${filters.minPrice}</span>
 
             </div>

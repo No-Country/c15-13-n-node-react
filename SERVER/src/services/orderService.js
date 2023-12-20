@@ -39,11 +39,11 @@ const createSessionService = async (order) => {
     quantity: product.quantity,
   }));
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
+    payment_method_types: ['card'],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.CLIENT_URL_PROD}/checkout-success`,
-    cancel_url: `${process.env.CLIENT_URL_PROD}/cart`,
+    success_url: `${process.env.CLIENT_URL}/checkout-success`,
+    cancel_url: `${process.env.CLIENT_URL}/cart`,
     metadata: {
       description: "Payment Tienda Verde",
     },

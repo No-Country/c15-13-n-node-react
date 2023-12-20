@@ -1,19 +1,48 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useProductById from '../../hooks/useProductById';
 import { useCart } from '../../hooks/useCart';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import RemoveIcon from '@mui/icons-material/Remove';
+import axios from 'axios';
+import { BASE_URL } from '../../constant/constantes';
+import { useState } from 'react';
 //import { getListProduct } from '../../constant/constantes';
 
-export default function Detail() {
+export default function Detail(props) {
+    const { user } = props;
     const { id } = useParams();
     const { character, loading } = useProductById(id);
     const { cart, addToCart, discountOneProduct, checkProductInCart } = useCart();
+    const [cantidad, setCantidad] = useState(1);
+    const navigate = useNavigate();
 
     if (loading) {
         return <h1>Cargando...</h1>
     }
-    const data = { id: character._id, name: character.name, image: character.image, price: character.price };
+    const data = { id: character._id, name: character.name, image: character.image, price: character.price, stock: character.stock };
+
+    const handlerOrder = async () => {
+        console.log(user.token);
+        addToCart(data);
+        axios.post(`${BASE_URL}cart/fill-cart`, {
+            "productId": id,
+            "quantity": cantidad,
+        }, {
+            headers: {
+                'x-access-token': `${user?.token}`,
+            }
+        }).then(res => {
+            navigate("/productos");
+        })
+        //https://ecommerce-upload-backend.onrender.com/api/cart/fill-cart
+    }
+
+    const sumCantidad = () => {
+        setCantidad(cantidad === data.stock ? cantidad : (cantidad + 1));
+    }
+    const resCantidad = () => {
+        setCantidad(cantidad === 1 ? cantidad : (cantidad - 1));
+    }
 
     return (
         <>
@@ -39,20 +68,20 @@ export default function Detail() {
                     <div className="w-40 h-14 justify-start items-start inline-flex">
                         <div className="w-14 h-full px-2 py-2.5 rounded-tl rounded-bl border border-black border-opacity-50 flex-col justify-center items-center inline-flex">
                             <div className="w-6 h-6 relative flex-col justify-start items-start flex">
-                                {checkProductInCart(data) ? cart.find(product => product.id === character._id).quantity : 1}
+                                {cantidad}
                             </div>
                         </div>
 
                         <div className="w-14 h-full bg-white border border-black rounded-tr rounded-br flex-col justify-center items-center inline-flex">
-                            <button className='flex bg-transparent w-full h-1/2 justify-center items-center' onClick={() => addToCart(data)}>
+                            <button className='flex bg-transparent w-full h-1/2 justify-center items-center' onClick={() => sumCantidad()}>
                                 <AddBoxIcon />
                             </button>
-                            <button className='flex bg-transparent w-full  h-1/2 justify-center items-center' onClick={() => discountOneProduct(data)}>
+                            <button className='flex bg-transparent w-full  h-1/2 justify-center items-center' onClick={() => resCantidad()}>
                                 <RemoveIcon />
                             </button>
                         </div>
                     </div>
-                    <button className=" bg-black rounded justify-center items-center gap-2.5 inline-flex">
+                    <button onClick={handlerOrder} className=" bg-black rounded justify-center items-center gap-2.5 inline-flex">
                         <p className="text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">Agregar al Carrito</p>
                     </button>
                 </div>
@@ -73,3 +102,6 @@ export default function Detail() {
         </>
     );
 }
+
+/* 
+checkProductInCart(data) ? cart.find(product => product.id === character._id).quantity : cantidad */
