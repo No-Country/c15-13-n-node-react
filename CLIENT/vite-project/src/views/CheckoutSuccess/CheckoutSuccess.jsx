@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../constant/constantes";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
-export default function CheckoutSuccess() {
+export default function CheckoutSuccess(data) {
+  const { user } = data;
+  const [cart, setCart] = useLocalStorage('cart', "")
   const [error, setError] = useState(null);
   const headers = {
-    "x-access-token":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2EwOWU0NGE0MmZjNzBlODNmYzExNyIsImlhdCI6MTcwMjc2NzY2MSwiZXhwIjoxNzAzMDI2ODYxfQ.Dssxy0DZ_9RmwCDOIpnZ8OBd4ROXJFP1562sdb47yyo",
+    "x-access-token": user?.token,
   };
 
   useEffect(() => {
+    console.log(cart);
     const fetchData = async (id) => {
       try {
         const response = await axios.delete(
-          `http://localhost:8000/api/cart/delete-cart/${id}`,
+          `${BASE_URL}cart/delete-cart/${id}`,
           { headers }
         );
         console.log('RESPUESTA PAGO ', response.data)
@@ -28,8 +32,7 @@ export default function CheckoutSuccess() {
         setError(error);
       }
     };
-    const id = "6580d451bb3d0c78bcc526eb";
-    fetchData(id);
+    fetchData(cart);
   }, []);
   return <h2>Compra satisfactoria...</h2>;
 }

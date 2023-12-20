@@ -33,7 +33,7 @@ function App() {
           <Route element={<ProtectedRoute isAllowed={!!user} redirectTo='/register' />}>
             <Route path='/acount' element={<Acount user={user} setUser={setUser} />} />
             <Route path="/cart" element={<Cart user={user} />} />
-            <Route path="/checkout-success" element={<CheckoutSuccess />} />
+            <Route path="/checkout-success" element={<CheckoutSuccess user={user} />} />
           </Route>
           <Route element={<ProtectedRoute isAllowed={!!user /* && user.role === 'admin' */} redirectTo='/login' />}>
             <Route path='/admin' element={<Admin user={user} />} />

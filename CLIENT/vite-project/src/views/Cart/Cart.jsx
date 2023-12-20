@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import CartItem from "../../components/Card/CartItem";
 import axios from "axios";
 import { BASE_URL } from "../../constant/constantes";
+import PayButton from "../../components/PayButton/PayButton";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 //import { useProductStore } from "../../store/productStore";
 
 export default function Cart(data) {
@@ -14,11 +16,11 @@ export default function Cart(data) {
     //const products = useProductStore(state => state.products);
     const [productItem, setProductItem] = useState([]);
     const [totalPrice, setTotalPrice] = useState("");
+    const [cartId, setCartId] = useLocalStorage('cart', "");
     //let priceTotal = calculateTotalPrice();
 
     useEffect(() => {
 
-        //https://ecommerce-upload-backend.onrender.com/api/cart/get-cart
         axios.get(`${BASE_URL}cart/get-cart`, {
             headers: {
                 'x-access-token': `${user?.token}`,
@@ -27,6 +29,7 @@ export default function Cart(data) {
             console.log(res.data);
             setProductItem([...res.data.cart.products]);
             setTotalPrice(res.data.cart.totalPrice);
+            setCartId(res.data.cart._id)
             /* addListCart(products.filter((item) => res.data.cart.products.map((prod) => prod._id).includes(item._id)
             )) */
         })
@@ -34,10 +37,19 @@ export default function Cart(data) {
     }, [])
     /* const handlerSubmit = () => {
 
+    }*/
+    const handlerDelete = (product) => {
+        axios.delete(`${BASE_URL}cart/delete-product-cart/?productId=${product.product}`, {
+            headers: {
+                'x-access-token': `${user?.token}`,
+            }
+        }).then(res => {
+            console.log(res.data);
+            setProductItem([...res.data.cart.products]);
+            setTotalPrice(res.data.cart.totalPrice);
+        })
+
     }
-    const handlerClear = () => {
-        clearCart();
-    } */
     //https://ecommerce-upload-backend.onrender.com/api/cart/fill-cart
     const addToCart = (product) => {
         console.log(product);
@@ -106,7 +118,7 @@ export default function Cart(data) {
                                     return <CartItem
                                         key={product?._id}
                                         addToCart={() => addToCart(product)}
-                                        removeFromCart={() => removeFromCart(product)}
+                                        removeFromCart={() => handlerDelete(product)}
                                         discountOneProduct={() => removeFromCart(product)}
                                         id={product?._id} name={product?.name} price={product?.price} quantity={product?.quantity} />
                                 }
@@ -124,9 +136,9 @@ export default function Cart(data) {
                         </NavLink>
 
 
-                        <button className="text-white px-12 h-full w-1/2 py-4 rounded border bg-red-500 border-black border-opacity-50 justify-center items-center flex text-base font-medium font-['Poppins'] leading-normal">
+                        {/*  <button onClick={handlerDelete} className="text-white px-12 h-full w-1/2 py-4 rounded border bg-red-500 border-black border-opacity-50 justify-center items-center flex text-base font-medium font-['Poppins'] leading-normal">
                             <DeleteIcon />
-                        </button>
+                        </button> */}
 
                     </div>
                 </div>
@@ -138,7 +150,7 @@ export default function Cart(data) {
                             <div className="text-black text-base font-normal font-['Poppins'] leading-normal">${totalPrice}</div>
                         </div>
 
-                        {/* <button onClick={handlerSubmit} className="text-neutral-50 flex bg-black rounded justify-center items-center text-base font-medium font-['Poppins'] leading-normal">Comprar</button> */}
+                        {productItem.length !== 0 && <PayButton id={cartId} user={user} />}
 
 
                     </div>
