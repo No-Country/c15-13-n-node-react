@@ -1,0 +1,44 @@
+{
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/"
+        },
+        {
+            "src": "/detail/:id",
+            "dest": "/"
+        },
+        {
+            "src": "/register",
+            "dest": "/"
+        },
+        {
+            "src": "/login",
+            "dest": "/"
+        },
+        {
+            "src": "/nosotros",
+            "dest": "/"
+        },
+        {
+            "src": "/productos",
+            "dest": "/"
+        },
+        {
+            "src": "/contacto",
+            "dest": "/"
+        },
+        {
+            "src": "/cart",
+            "dest": "/"
+        },
+        {
+            "src": "/checkout-success",
+            "dest": "/"
+        },
+        {
+            "src": "/admin",
+            "dest": "/"
+        }
+    ]
+}
