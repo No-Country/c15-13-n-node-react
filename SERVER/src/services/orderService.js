@@ -42,8 +42,8 @@ const createSessionService = async (order) => {
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.CLIENT_URL_PROD_NETLIFY}/checkout-success`,
-    cancel_url: `${process.env.CLIENT_URL_PROD_NETLIFY}/cart`,
+    success_url: `${process.env.CLIENT_URL_PROD}/checkout-success`,
+    cancel_url: `${process.env.CLIENT_URL_PROD}/cart`,
     metadata: {
       description: "Pago Tienda Verde",
     },
