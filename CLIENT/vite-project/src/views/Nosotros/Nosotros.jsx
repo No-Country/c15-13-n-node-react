@@ -19,70 +19,48 @@ export default function Nosotros() {
 
 
 
-            <div className="justify-start items-start gap-7 inline-flex">
-                <div className="Frame888 flex-col justify-start items-start gap-8 inline-flex">
+            <div className="flex flex-wrap justify-start items-start gap-7">
+                <div className="flex-col justify-start items-start gap-8 inline-flex">
                     <div className="Frame874 h-96 px-16 pt-10 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className="Image46 w-60 h-96" src="https://via.placeholder.com/236x391" />
+                        <img className="Image46 w-60 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U05MJG5QCHL-6ca9ca31d47a-72" />
                     </div>
-                    <div className="Frame884 flex-col justify-start items-start gap-4 flex">
-                        <div className="Frame878 flex-col justify-start items-start gap-2 flex">
-                            <div className="TomCruise text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Tom Cruise</div>
-                            <div className="FounderChairman text-black text-base font-normal font-['Poppins'] leading-normal">Founder & Chairman</div>
-                        </div>
-                        <div className="Frame877 justify-start items-start gap-4 inline-flex">
-                            <div className="IconTwitter w-6 h-6 pr-0.5 justify-start items-center flex">
-                                <div className="Group w-7 h-6 relative">
-                                </div>
-                            </div>
-                            <div className="IconInstagram w-6 h-6 p-0.5 justify-center items-center flex">
-                                <div className="Group w-4 h-4 relative">
-                                </div>
-                            </div>
-                            <div className="IconLinkedin w-6 h-6 relative" />
+                    <div className="flex-col justify-start items-start gap-4 flex">
+                        <div className="flex-col justify-start items-start gap-2 flex">
+                            <div className=" text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Maria Bebion</div>
+                            <div className=" text-black text-base font-normal font-['Poppins'] leading-normal">Diseñadora ux/ui</div>
                         </div>
                     </div>
                 </div>
-                <div className="Frame887 flex-col justify-start items-start gap-8 inline-flex">
-                    <div className="Frame875 h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className="Image51 w-72 h-96" src="https://via.placeholder.com/294x397" />
+                <div className="flex-col justify-start items-start gap-8 inline-flex">
+                    <div className=" h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
+                        <img className=" w-72 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U049M85181H-18070d1e678f-72" />
                     </div>
-                    <div className="Frame885 flex-col justify-start items-start gap-4 flex">
-                        <div className="Frame880 flex-col justify-start items-start gap-2 flex">
-                            <div className="EmmaWatson text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Emma Watson</div>
-                            <div className="ManagingDirector text-black text-base font-normal font-['Poppins'] leading-normal">Managing Director</div>
-                        </div>
-                        <div className="Frame879 justify-start items-start gap-4 inline-flex">
-                            <div className="IconTwitter w-6 h-6 pr-0.5 justify-start items-center flex">
-                                <div className="Group w-7 h-6 relative">
-                                </div>
-                            </div>
-                            <div className="IconInstagram w-6 h-6 p-0.5 justify-center items-center flex">
-                                <div className="Group w-4 h-4 relative">
-                                </div>
-                            </div>
-                            <div className="IconLinkedin w-6 h-6 relative" />
+                    <div className=" flex-col justify-start items-start gap-4 flex">
+                        <div className=" flex-col justify-start items-start gap-2 flex">
+                            <div className=" text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Orlando Rodriguez</div>
+                            <div className=" text-black text-base font-normal font-['Poppins'] leading-normal">Back-end Developer</div>
                         </div>
                     </div>
                 </div>
                 <div className="Frame889 flex-col justify-start items-start gap-8 inline-flex">
                     <div className="Frame876 h-96 px-5 pt-9 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className="Image47 w-80 h-96" src="https://via.placeholder.com/326x392" />
+                        <img className="Image47 w-80 h-96" src="/image/mio.jpeg" />
                     </div>
-                    <div className="Frame886 flex-col justify-start items-start gap-4 flex">
-                        <div className="Frame882 flex-col justify-start items-start gap-2 flex">
-                            <div className="WillSmith text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Will Smith</div>
-                            <div className="ProductDesigner text-black text-base font-normal font-['Poppins'] leading-normal">Product Designer</div>
+                    <div className=" flex-col justify-start items-start gap-4 flex">
+                        <div className=" flex-col justify-start items-start gap-2 flex">
+                            <div className=" text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Ricardo Blazquez</div>
+                            <div className=" text-black text-base font-normal font-['Poppins'] leading-normal">Front-end Developer</div>
                         </div>
-                        <div className="Frame881 justify-start items-start gap-4 inline-flex">
-                            <div className="IconTwitter w-6 h-6 pr-0.5 justify-start items-center flex">
-                                <div className="Group w-7 h-6 relative">
-                                </div>
-                            </div>
-                            <div className="IconInstagram w-6 h-6 p-0.5 justify-center items-center flex">
-                                <div className="Group w-4 h-4 relative">
-                                </div>
-                            </div>
-                            <div className="IconLinkedin w-6 h-6 relative" />
+                    </div>
+                </div>
+                <div className="flex-col justify-start items-start gap-8 inline-flex">
+                    <div className="Frame875 h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
+                        <img className="Image51 w-72 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U063PNZDCQ4-5e34f4584cb7-72" />
+                    </div>
+                    <div className="flex-col justify-start items-start gap-4 flex">
+                        <div className="flex-col justify-start items-start gap-2 flex">
+                            <div className=" text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Peter Camacho</div>
+                            <div className="ManagingDirector text-black text-base font-normal font-['Poppins'] leading-normal">QA</div>
                         </div>
                     </div>
                 </div>
