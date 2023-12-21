@@ -23,17 +23,16 @@ function App() {
       <div className='w-full h-full flex flex-col items-start py-10'>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/detail/:id" element={<Detail user={user} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login user={user} setUser={setUser} />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/productos" element={<Product />} />
+          <Route path="/productos" element={<Product user={user} />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route path="/checkout-success" element={<CheckoutSuccess />} />
           <Route element={<ProtectedRoute isAllowed={!!user} redirectTo='/register' />}>
             <Route path='/acount' element={<Acount user={user} setUser={setUser} />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout-success" element={<CheckoutSuccess />} />
+            <Route path="/cart" element={<Cart user={user} />} />
+            <Route path="/checkout-success" element={<CheckoutSuccess user={user} />} />
           </Route>
           <Route element={<ProtectedRoute isAllowed={!!user /* && user.role === 'admin' */} redirectTo='/login' />}>
             <Route path='/admin' element={<Admin user={user} />} />

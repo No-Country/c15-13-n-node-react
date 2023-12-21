@@ -6,7 +6,8 @@ import { useProductStore } from "../../store/productStore"
 import { useEffect } from "react";
 
 
-export default function Product() {
+export default function Product(data) {
+    const { user } = data;
     const { filterProducts } = useFilters();
     const { getProduct } = useProductStore();
     const products = useProductStore(state => state.products);
@@ -20,7 +21,7 @@ export default function Product() {
     return (
         <>
             <Filters />
-            <Productos products={filteredProducts} />
+            <Productos products={filteredProducts} user={user} />
         </>
     )
 }
