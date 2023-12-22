@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 //import DeleteIcon from '@mui/icons-material/Delete';
-//import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../hooks/useCart";
 import { useEffect, useState } from "react";
 import CartItem from "../../components/Card/CartItem";
 import axios from "axios";
@@ -12,7 +12,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 export default function Cart(data) {
     const { user } = data;
     //hacer las card del carrito responsive
-    //const { cart, clearCart, calculateTotalPrice, discountOneProduct } = useCart();
+    const { removeFromCart, addToCart } = useCart();
     //const products = useProductStore(state => state.products);
     const [productItem, setProductItem] = useState([]);
     const [totalPrice, setTotalPrice] = useState("");
@@ -47,11 +47,12 @@ export default function Cart(data) {
             console.log(res.data);
             setProductItem([...res.data.cart.products]);
             setTotalPrice(res.data.cart.totalPrice);
+            removeFromCart(product);
         })
 
     }
     //https://ecommerce-upload-backend.onrender.com/api/cart/fill-cart
-    const addToCart = (product) => {
+    const addToCartBack = (product) => {
         console.log(product);
         axios.post(`${BASE_URL}cart/fill-cart`, {
             productId: product.product,
@@ -64,11 +65,14 @@ export default function Cart(data) {
             console.log(res.data);
             setProductItem([...res.data.cart.products]);
             setTotalPrice(res.data.cart.totalPrice);
+            addToCart(product);
         })
     }
 
-    const removeFromCart = (product) => {
+    const removeFromCartBack = (product) => {
+
         if (product.quantity === 1) {
+            removeFromCart(product)
             axios.delete(`${BASE_URL}cart/delete-product-cart/?productId=${product.product}`, {
                 headers: {
                     'x-access-token': `${user?.token}`,
@@ -117,9 +121,9 @@ export default function Cart(data) {
                                 {productItem ? productItem.map((product) => {
                                     return <CartItem
                                         key={product?._id}
-                                        addToCart={() => addToCart(product)}
+                                        addToCart={() => addToCartBack(product)}
                                         removeFromCart={() => handlerDelete(product)}
-                                        discountOneProduct={() => removeFromCart(product)}
+                                        discountOneProduct={() => removeFromCartBack(product)}
                                         id={product?._id} name={product?.name} price={product?.price} quantity={product?.quantity} />
                                 }
                                 )

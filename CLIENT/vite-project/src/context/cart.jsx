@@ -38,7 +38,7 @@ export function CartProvider({ children }) {
     }
     //incluyo en el carrito el producto 
     const addCantCart = (product, cant) => {
-        const productInCartIndex = cart.findIndex(item => item.id === product.id)
+        //const productInCartIndex = cart.findIndex(item => item.id === product.id)
 
         setCart(prevState => ([
             ...prevState,
@@ -79,6 +79,7 @@ export function CartProvider({ children }) {
             cart,
             addListCart,
             addToCart,
+            addCantCart,
             removeFromCart,
             discountOneProduct,
             clearCart,

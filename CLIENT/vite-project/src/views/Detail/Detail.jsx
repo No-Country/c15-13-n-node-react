@@ -8,22 +8,25 @@ import { BASE_URL } from '../../constant/constantes';
 import { useState } from 'react';
 //import { getListProduct } from '../../constant/constantes';
 
-export default function Detail(props) {
-    const { user } = props;
+export default function Detail(data) {
+    const { user } = data;
     const { id } = useParams();
     const { character, loading } = useProductById(id);
-    const { cart, addToCart, discountOneProduct, checkProductInCart } = useCart();
+    const { addToCart } = useCart();
     const [cantidad, setCantidad] = useState(1);
     const navigate = useNavigate();
 
     if (loading) {
         return <h1>Cargando...</h1>
     }
-    const data = { id: character._id, name: character.name, image: character.image, price: character.price, stock: character.stock };
+    const dataProduct = { id: character._id, name: character.name, image: character.image, price: character.price, stock: character.stock };
 
     const handlerOrder = async () => {
-        console.log(user.token);
-        addToCart(data);
+        if (!user || !user.token) {
+            navigate("/register");
+            return;
+        }
+        addToCart(dataProduct);
         axios.post(`${BASE_URL}cart/fill-cart`, {
             "productId": id,
             "quantity": cantidad,
@@ -31,14 +34,14 @@ export default function Detail(props) {
             headers: {
                 'x-access-token': `${user?.token}`,
             }
-        }).then(res => {
+        }).then(() => {
             navigate("/productos");
         })
-        //https://ecommerce-upload-backend.onrender.com/api/cart/fill-cart
+
     }
 
     const sumCantidad = () => {
-        setCantidad(cantidad === data.stock ? cantidad : (cantidad + 1));
+        setCantidad(cantidad === dataProduct.stock ? cantidad : (cantidad + 1));
     }
     const resCantidad = () => {
         setCantidad(cantidad === 1 ? cantidad : (cantidad - 1));
@@ -104,4 +107,4 @@ export default function Detail(props) {
 }
 
 /* 
-checkProductInCart(data) ? cart.find(product => product.id === character._id).quantity : cantidad */
+checkProductInCart(dataProduct) ? cart.find(product => product.id === character._id).quantity : cantidad */

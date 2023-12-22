@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 
-export default function Productos({ products, user }) {
-
+export default function Productos(data) {
+    const { products, user } = data;
     const listProducts = products;
 
     return (

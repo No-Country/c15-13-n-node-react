@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../constant/constantes";
+import { useCart } from "../../hooks/useCart";
 
 export default function CheckoutSuccess(data) {
   const { user } = data;
+  const { clearCart } = useCart();
 
   const [error, setError] = useState(null);
   const headers = {
@@ -37,6 +39,7 @@ export default function CheckoutSuccess(data) {
         'x-access-token': `${user?.token}`,
       }
     }).then(res => {
+      clearCart();
       fetchData(res.data.cart._id);
     })
     //priceTotal = calculateTotalPrice();

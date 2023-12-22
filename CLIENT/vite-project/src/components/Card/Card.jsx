@@ -25,6 +25,7 @@ export default function Card(data) {
         }).then(res => {
             alert(`El siguiente producto se elimino con exito: ${res.data.name}`);
             getProduct();
+            removeFromCart(id);
         }).catch(error => {
             alert("El producto no pudo ser eliminado");
         })
