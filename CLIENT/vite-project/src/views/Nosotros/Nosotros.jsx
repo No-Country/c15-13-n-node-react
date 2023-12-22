@@ -4,7 +4,7 @@ export default function Nosotros() {
         <section className="w-full h-full relative bg-white">
 
             <div className="flex-col w-full justify-start items-start gap-10 inline-flex">
-                <h1 className="p-10 text-justify text-black text-5xl font-semibold font-['Inter'] leading-10 tracking-widest">Our Story</h1>
+                <h1 className="p-10 text-justify text-black text-5xl font-semibold font-['Inter'] leading-10 tracking-widest">Sobre Nosotros</h1>
                 <div className="flex flex-wrap justify-start items-start gap-6 w-full">
                     <div className="sm:w-full lg:w-1/2 p-10 text-black text-base font-normal font-['Poppins'] leading-relaxed">En 1948, se fundó la empresa JARDIN VERDE con el objetivo de satisfacer las necesidades de los agricultores en el campo de la maquinaria agrícola. Desde sus inicios, la empresa se ha dedicado al diseño, fabricación y venta de maquinarias innovadoras para facilitar y optimizar las labores agrícolas.
 

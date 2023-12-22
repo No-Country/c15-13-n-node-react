@@ -44,45 +44,18 @@ export default function CheckoutSuccess(data) {
     return fetchData(cart._id);
   }, [])
 
-  if (!cart) {
+  /* if (!cart) {
     return (
       <>
         <h1>No se encuentra ningun carrito</h1>
       </>
     )
-  }
-
+  } */
   return (
     <>
       <h1>Su compra fue exitosa</h1>
       <h2>El siguiente pedido fue procesado con exito</h2>
-      <div className="w-full bg-black ">
-        <ul className="p-2 m-1">
-          {cart.map((price, name, quantity) => {
-            return <>
-              <li className=' w-full flex justify-between'>
-                <div>
-                  {/* <img className=' w-20' src={image} alt={name} /> */}
-                  <div className='flex items-center'>
-                    <strong className=' text-white'>{name}</strong>
-                  </div>
-                </div>
-                <div className='flex items-center gap-6'>
-                  <small className='text-white w-10 text-lg'>
-                    {quantity}
-                  </small>
-                </div>
-                <div className='text-white flex items-center'>
-                  ${price}
-                </div>
-              </li>
-            </>
-          }
-          )
 
-          }
-        </ul>
-      </div>
     </>
   );
 }
