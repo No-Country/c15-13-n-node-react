@@ -32,7 +32,7 @@ export default function CheckoutSuccess(data) {
     }
   };
   useEffect(() => {
- 
+
     axios.get(`${BASE_URL}cart/get-cart`, {
       headers: {
         'x-access-token': `${user?.token}`,
@@ -44,18 +44,18 @@ export default function CheckoutSuccess(data) {
     return fetchData(cart._id);
   }, [])
 
-  if (!cart) {
+  /* if (!cart) {
     return (
       <>
         <h1>No se encuentra ningun carrito</h1>
       </>
     )
-  }
+  } */
   return (
     <>
       <h1>Su compra fue exitosa</h1>
       <h2>El siguiente pedido fue procesado con exito</h2>
-      
+
     </>
   );
 }
