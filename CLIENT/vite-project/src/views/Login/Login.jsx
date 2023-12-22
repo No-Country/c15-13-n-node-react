@@ -7,7 +7,6 @@ import { BASE_URL } from "../../constant/constantes";
 
 export default function Login(data) {
     const { user, setUser } = data;
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -45,10 +44,10 @@ export default function Login(data) {
             setErrors(validate({ name, email, password, confirmPassword }));
             return;
         } */
-        if (user) {
+        /* if (user) {
             alert("Ya se encuentra autenticado debe cerrar sesion")
             return;
-        }
+        } */
 
         axios.post(`${BASE_URL}user/login`, {
             email,
@@ -56,20 +55,15 @@ export default function Login(data) {
 
         }).then(res => {
             //aca guardo los datos del usuario
-
             setUser(res.data);
             navigate('/');
-
-
         })
             .catch(
                 (error) => {
                     alert(`Error al crear la cuenta${error.response.data.message}`)
                 }
             )
-
     }
-
 
     return (
         <div className="w-full h-full">
