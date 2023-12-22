@@ -4,7 +4,6 @@ import { BASE_URL } from "../../constant/constantes";
 
 export default function CheckoutSuccess(data) {
   const { user } = data;
-  const [cart, setCart] = useState({});
 
   const [error, setError] = useState(null);
   const headers = {
@@ -38,10 +37,9 @@ export default function CheckoutSuccess(data) {
         'x-access-token': `${user?.token}`,
       }
     }).then(res => {
-      setCart(res.data.cart);
+      fetchData(res.data.cart._id);
     })
     //priceTotal = calculateTotalPrice();
-    return fetchData(cart._id);
   }, [])
 
   /* if (!cart) {
