@@ -45,7 +45,7 @@ const createSessionService = async (order) => {
     success_url: `${process.env.CLIENT_URL_PROD}/checkout-success`,
     cancel_url: `${process.env.CLIENT_URL_PROD}/cart`,
     metadata: {
-      description: "Payment Tienda Verde",
+      description: "Pago Tienda Verde",
     },
   });
   return {

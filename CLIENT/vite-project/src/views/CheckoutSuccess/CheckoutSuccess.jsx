@@ -21,7 +21,7 @@ export default function CheckoutSuccess(data) {
       if (response.data.success) {
         if (response.data.status) {
           alert(response.data.msg);
-          setCart({})
+          //setCart({})
         }
       } else {
         console.log(response.data.msg)
