@@ -1,12 +1,13 @@
 import { useState } from "react";
 import validate from "./validate";
 import FormInput from "../../components/Register/FormInput";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import RegisterImage from "../../components/RegisterImage/RegisterImage";
 import { BASE_URL } from "../../constant/constantes";
 
 export default function Register() {
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [mobile, setMobile] = useState('');
@@ -14,7 +15,7 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [avatar, setAvatar] = useState(null);
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [errors, setErrors] = useState({});
     const formInputs = [
@@ -86,14 +87,27 @@ export default function Register() {
 
         },
     ];
-
-    const handlerSubmit = (e) => {
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    };
+    const handlerSubmit = async (e) => {
+        let base64String;
         e.preventDefault();
-        /* setErrors({});
-        if (Object.keys(validate({ name, email, password, confirmPassword })).length !== 0) {
-            setErrors(validate({ name, email, password, confirmPassword }));
-            return;
-        } */
+        if (avatar) {
+            try {
+                base64String = await convertToBase64(avatar);
+                // Resto del código para enviar la cadena de base64 a través de axios
+            } catch (error) {
+                console.log("error al subir la imagen");
+            }
+        }
 
         axios.post(`${BASE_URL}user/register`, {
             lastName,
@@ -101,13 +115,13 @@ export default function Register() {
             email,
             mobile,
             password,
+            avatar: base64String,
 
-        }).then(res => {
-            //localStorage.setItem('token', res.data.token);
-            //localStorage.setItem('user', JSON.stringify(res.data.user));
+        }).then(() => {
             //navigate('/');
             alert(`usuario creado con exito`);
-            console.log(res.data);
+            navigate('/login');
+
         })
             .catch(
                 (error) => {
@@ -121,7 +135,7 @@ export default function Register() {
     return (
         <div className="w-full h-full">
 
-            <div className="flex justify-center items-center gap-32 ">
+            <div className="flex justify-center flex-wrap items-center gap-32 ">
                 <div className="SideImage pl-4 pr-5 pt-20 pb-16 bg-sky-50 rounded-tr rounded-br justify-center items-center flex">
                     <RegisterImage file={avatar} setFile={setAvatar} />
                 </div>
