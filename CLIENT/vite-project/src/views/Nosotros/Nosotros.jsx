@@ -33,7 +33,7 @@ export default function Nosotros() {
                 </div>
                 <div className="flex-col justify-start items-start gap-8 inline-flex">
                     <div className=" h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className=" w-72 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U049M85181H-18070d1e678f-72" />
+                        <img className=" w-72 h-96" src="/image/Orlando.png" />
                     </div>
                     <div className=" flex-col justify-start items-start gap-4 flex">
                         <div className=" flex-col justify-start items-start gap-2 flex">
