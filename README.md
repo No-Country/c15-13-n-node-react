@@ -45,7 +45,7 @@ Jardin Verde es una aplicación web desarrollada para brindar a los usuarios pod
 | **Maria Bebión** |
 | <a href="https://github.com/MariaABebion"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> |
 | <a href="https://www.linkedin.com/in/maria-bebion-85a6038a/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> |
-| <a href="https://www.figma.com/file/GLVnUm73GBxUHTngxMQhpd/ProyectoNoCountry?type=design&node-id=1-3&mode=design&t=2kNHf7BCnFkJgxn9-0"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> |
+| <a href="https://www.figma.com/file/GLVnUm73GBxUHTngxMQhpd/ProyectoNoCountry?type=design&node-id=1-3&mode=design&t=2kNHf7BCnFkJgxn9-0"><img src="https://www.pixartprinting.it/blog/wp-content/uploads/2022/12/figma_logo.png"/> |
 
 ## QA:
 | <img src="https://ca.slack-edge.com/T02KS88FB0E-U063PNZDCQ4-5e34f4584cb7-512" width=80 /> 
