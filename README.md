@@ -15,7 +15,7 @@ Jardin Verde es una aplicación web desarrollada para brindar a los usuarios pod
 
 ## STACK FrontEnd:
 
-![React](https://img.shields.io/badge/React-149eca?style=for-the-badge&logo=react&logoColor=fff) ![Sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white) ![Axios](https://img.shields.io/badge/-Axios-671ddf?style=for-the-badge&logo=axios&logoColor=white)
+![React](https://img.shields.io/badge/React-149eca?style=for-the-badge&logo=react&logoColor=fff) ![Sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 
 ## STACK BackEnd:
 
