@@ -48,7 +48,7 @@ export default function NavBar(data) {
                             navLinks.map(item => { return (<Button key={item.title} component={NavLink} to={item.path}> {item.title} </Button>) }
                             )
                         }
-                        {user ? <Button component={NavLink} to={"/acount"}> {user.firstname} </Button> : <Button component={NavLink} to={"/register"}> Registrarse </Button>
+                        {user.token ? <Button component={NavLink} to={"/acount"}> {user.firstname} </Button> : <Button component={NavLink} to={"/register"}> Registrarse </Button>
                         }
                     </Box>
                 </Toolbar>

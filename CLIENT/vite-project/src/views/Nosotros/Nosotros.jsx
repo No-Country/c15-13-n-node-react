@@ -33,7 +33,7 @@ export default function Nosotros() {
                 </div>
                 <div className="flex-col justify-start items-start gap-8 inline-flex">
                     <div className=" h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className=" w-72 h-96" src="/image/Orlando.png" />
+                        <img className=" w-72 h-96" src="/image/Orlando.jpg" />
                     </div>
                     <div className=" flex-col justify-start items-start gap-4 flex">
                         <div className=" flex-col justify-start items-start gap-2 flex">
@@ -55,7 +55,7 @@ export default function Nosotros() {
                 </div>
                 <div className="flex-col justify-start items-start gap-8 inline-flex">
                     <div className="Frame875 h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className="Image51 w-72 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U063PNZDCQ4-5e34f4584cb7-72" />
+                        <img className="Image51 w-72 h-96" src="/image/Peter.jpg" />
                     </div>
                     <div className="flex-col justify-start items-start gap-4 flex">
                         <div className="flex-col justify-start items-start gap-2 flex">
@@ -66,7 +66,7 @@ export default function Nosotros() {
                 </div>
                 <div className="flex-col justify-start items-start gap-8 inline-flex">
                     <div className=" h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className=" w-72 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U063W42LBMZ-79801fcbaed4-72" />
+                        <img className=" w-72 h-96" src="/image/Lautaro.jpg" />
                     </div>
                     <div className="flex-col justify-start items-start gap-4 flex">
                         <div className="flex-col justify-start items-start gap-2 flex">

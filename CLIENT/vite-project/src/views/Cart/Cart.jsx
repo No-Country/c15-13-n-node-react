@@ -12,7 +12,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 export default function Cart(data) {
     const { user } = data;
     //hacer las card del carrito responsive
-    const { removeFromCart, addToCart } = useCart();
+    const { removeFromCart, addToCart, addListCart } = useCart();
     //const products = useProductStore(state => state.products);
     const [productItem, setProductItem] = useState([]);
     const [totalPrice, setTotalPrice] = useState("");
@@ -26,12 +26,10 @@ export default function Cart(data) {
                 'x-access-token': `${user?.token}`,
             }
         }).then(res => {
-            console.log(res.data);
             setProductItem([...res.data.cart.products]);
             setTotalPrice(res.data.cart.totalPrice);
-            setCartId(res.data.cart._id)
-            /* addListCart(products.filter((item) => res.data.cart.products.map((prod) => prod._id).includes(item._id)
-            )) */
+            setCartId(res.data.cart._id);
+            addListCart([...res.data.cart.products])
         })
         //priceTotal = calculateTotalPrice();
     }, [])

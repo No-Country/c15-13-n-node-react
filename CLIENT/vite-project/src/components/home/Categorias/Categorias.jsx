@@ -19,9 +19,9 @@ export default function Categorias() {
     return (
         <div className="w-full h-auto flex-col justify-start items-center gap-14 inline-flex  py-40">
             <div className="w-full px-5 justify-start items-end gap-96 inline-flex">
-                <div className="Frame624 flex-col justify-start items-start gap-5 inline-flex">
-                    <div className="Frame623 justify-start items-center gap-4 inline-flex">
-                        <div className="Rectangle18 w-5 h-10 relative">
+                <div className="flex-col justify-start items-start gap-5 inline-flex">
+                    <div className="justify-start items-center gap-4 inline-flex">
+                        <div className="w-5 h-10 relative">
                             <div className="Rectangle17 w-5 h-10 left-0 top-0 absolute bg-red-500 rounded" />
                         </div>
                         <div className="Categories text-red-500 text-base font-semibold font-['Poppins'] leading-tight">Categorias</div>
