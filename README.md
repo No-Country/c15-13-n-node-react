@@ -11,10 +11,15 @@ Jardin Verde es una aplicación web desarrollada para brindar a los usuarios pod
 - E-commerce:
  Proyecto de migración de plataforma tecnológica para insumos de jardinería, con el fin de mejorar sus ingresos, reducir costos de mantenimiento y lograr un mejor posicionamiento de la  
  marca.
+<hr/>
  Funcionalidades:
+ <hr/>
  Búsqueda productos: Que posible agilizar la búsqueda de insumos  mediante la aplicación de diversos filtros.
+ <hr/>
  Registro: Permite a los clientes registrar y logearse para poder realizar compras.
+ <hr/>
  Incorporación de medios de pagos electrónicos: para mejorar la rapidez y comodidad en las transacciones, brindando así una experiencia de compra más satisfactoria.
+ <hr/>
  Carga y modificación de productos: Se ofrece la posibilidad al usuario de actualizar y modificar la información de los productos para mantenerla siempre actualizada.
 
 <hr/>
