@@ -29,12 +29,12 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/productos" element={<Product user={user} />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route element={<ProtectedRoute isAllowed={!!user} redirectTo='/register' />}>
+          <Route element={<ProtectedRoute isAllowed={!!user.token} redirectTo='/register' />}>
             <Route path='/acount' element={<Acount user={user} setUser={setUser} />} />
             <Route path="/cart" element={<Cart user={user} />} />
             <Route path="/checkout-success" element={<CheckoutSuccess user={user} />} />
           </Route>
-          <Route element={<ProtectedRoute isAllowed={!!user /* && user.role === 'admin' */} redirectTo='/login' />}>
+          <Route element={<ProtectedRoute isAllowed={!!user.token /* && user.role === 'admin' */} redirectTo='/login' />}>
             <Route path='/admin' element={<Admin user={user} />} />
           </Route>
         </Routes>
