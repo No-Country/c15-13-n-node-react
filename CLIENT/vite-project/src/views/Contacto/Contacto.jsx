@@ -1,21 +1,22 @@
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Contacto() {
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const navigate = useNavigate();
 
     const handlerSubmit = () => {
-        alert("Su mensaje fue enviado exitosamente")
+        alert("Su mensaje fue enviado exitosamente");
+        navigate('/');
     }
 
     return (
         < >
             <div className="w-full h-full flex flex-row-reverse justify-center flex-wrap bg-white" >
-
-
 
                 <div className="px-8 py-10 bg-white rounded shadow justify-center items-center inline-flex">
                     <form onSubmit={handlerSubmit} className=" self-stretch flex-col justify-start items-end gap-4 inline-flex">

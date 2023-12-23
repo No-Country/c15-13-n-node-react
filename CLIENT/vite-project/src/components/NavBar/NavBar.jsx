@@ -8,7 +8,6 @@ import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const navLinks = [
     { title: "Inicio", path: "/", icon: <HomeIcon />, },
@@ -17,12 +16,12 @@ const navLinks = [
     { title: "Carrito", path: "/cart", icon: <AddShoppingCartIcon /> },
 ]
 
-
-export default function NavBar(props) {
+export default function NavBar(data) {
     const [open, setOpen] = useState(false);
-    const { user } = props;
+    const { user } = data;
 
     useEffect(() => {
+        console.log(user);
     }, [user])
 
     return (
@@ -56,7 +55,7 @@ export default function NavBar(props) {
             </AppBar >
 
             <Drawer open={open} anchor="left" onClose={() => setOpen(false)} sx={{ display: { xs: "flex", sm: "none" } }}>
-                <NavListDrawer navArrayLinks={navLinks} setOpen={setOpen} />
+                <NavListDrawer navArrayLinks={navLinks} setOpen={setOpen} user={user} />
             </Drawer>
         </>
     );

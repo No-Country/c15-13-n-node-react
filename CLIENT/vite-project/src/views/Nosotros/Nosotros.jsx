@@ -27,13 +27,13 @@ export default function Nosotros() {
                     <div className="flex-col justify-start items-start gap-4 flex">
                         <div className="flex-col justify-start items-start gap-2 flex">
                             <div className=" text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Maria Bebion</div>
-                            <div className=" text-black text-base font-normal font-['Poppins'] leading-normal">Diseñadora ux/ui</div>
+                            <div className=" text-black text-base font-normal font-['Poppins'] leading-normal">Diseñadora Ux/Ui</div>
                         </div>
                     </div>
                 </div>
                 <div className="flex-col justify-start items-start gap-8 inline-flex">
                     <div className=" h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
-                        <img className=" w-72 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U049M85181H-18070d1e678f-72" />
+                        <img className=" w-72 h-96" src="/image/Orlando.png" />
                     </div>
                     <div className=" flex-col justify-start items-start gap-4 flex">
                         <div className=" flex-col justify-start items-start gap-2 flex">
@@ -60,6 +60,17 @@ export default function Nosotros() {
                     <div className="flex-col justify-start items-start gap-4 flex">
                         <div className="flex-col justify-start items-start gap-2 flex">
                             <div className=" text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Peter Camacho</div>
+                            <div className="ManagingDirector text-black text-base font-normal font-['Poppins'] leading-normal">QA</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex-col justify-start items-start gap-8 inline-flex">
+                    <div className=" h-96 px-9 pt-8 bg-neutral-100 rounded flex-col justify-end items-center flex">
+                        <img className=" w-72 h-96" src="https://ca.slack-edge.com/T02KS88FB0E-U063W42LBMZ-79801fcbaed4-72" />
+                    </div>
+                    <div className="flex-col justify-start items-start gap-4 flex">
+                        <div className="flex-col justify-start items-start gap-2 flex">
+                            <div className=" text-black text-3xl font-medium font-['Inter'] leading-loose tracking-wider">Lautaro Acosta</div>
                             <div className="ManagingDirector text-black text-base font-normal font-['Poppins'] leading-normal">QA</div>
                         </div>
                     </div>

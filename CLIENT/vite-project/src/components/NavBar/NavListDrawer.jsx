@@ -2,6 +2,7 @@ import { Box, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/
 import { List } from "@mui/material"
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 NavListDrawer.propTypes = {
     navArrayLinks: PropTypes.any,
@@ -24,6 +25,14 @@ export default function NavListDrawer({ navArrayLinks, setOpen }) {
 
                 ))
                 }
+                <ListItem disablePadding key={'user'}>
+                    <ListItemButton component={NavLink} to={'/acount'} onClick={() => setOpen(false)}>
+                        <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+                        <ListItemText>
+                            {'Usuario'}
+                        </ListItemText>
+                    </ListItemButton>
+                </ListItem>
 
             </List>
         </nav>

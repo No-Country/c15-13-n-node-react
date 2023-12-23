@@ -9,7 +9,6 @@ export default function useProductById(id) {
 
     useEffect(() => {
         axios(`${BASE_URL}product/get-one-product/${id}`).then(({ data }) => {
-            console.log(data);
             setCharacter(data.user);
             setLoading(false);
         });

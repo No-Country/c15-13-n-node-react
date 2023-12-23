@@ -45,7 +45,7 @@ export const getListCategorias = [
     {
         id: 2,
         categoria: "Máquinas a Explosión",
-        imagen: "/image/mototaladro.png"
+        imagen: "/image/minitractores.png"
     },
     {
         id: 3,
