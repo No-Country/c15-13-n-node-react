@@ -9,7 +9,7 @@ Acount.propTypes = {
 export default function Acount({ user, setUser }) {
     const navigate = useNavigate();
     const handler = () => {
-        setUser(null);
+        setUser({});
         navigate('/login');
     };
     return (
